@@ -2074,7 +2074,7 @@ async function pagarPix(){if(!S.email){pedirTexto({titulo:'Qual seu e-mail?',tex
         });
       }
     }catch(e){}
-    S.premium=false; S.plano=null;
+    await verificarStatusPremium(true);
     save(); renderPremium();
     toast('Assinatura cancelada');
   });
