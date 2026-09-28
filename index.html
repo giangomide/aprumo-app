@@ -1396,7 +1396,13 @@ body.dark .btn-solid.perigo { background: #E05252; color: #fff; }
   background: var(--g800); color: var(--fw);
   border-radius: 10px; font-size: 13px; font-weight: 600;
 }
-html, body { height: 100%; height: 100dvh; overscroll-behavior: none; } body { position: fixed; top: 0; bottom: 0; left: 0; right: 0; width: 100%; } .tela { min-height: 0; } .scroll, .lancar-body, .chat-scroll, .pr-scroll, .modal { min-height: 0; overscroll-behavior: contain; touch-action: pan-y; -webkit-overflow-scrolling: touch; } </style>
+
+/* correções de rolagem no celular */
+html, body { height: 100%; height: 100dvh; overscroll-behavior: none; }
+body { position: fixed; top: 0; bottom: 0; left: 0; right: 0; width: 100%; }
+.tela { min-height: 0; }
+.scroll, .lancar-body, .chat-scroll, .pr-scroll, .modal { min-height: 0; overscroll-behavior: contain; touch-action: pan-y; -webkit-overflow-scrolling: touch; }
+</style>
 </head>
 <body>
 
@@ -3723,6 +3729,25 @@ window.addEventListener('load',()=>{
   var sb = null, uid = null, emailConta = null, timerPush = null, emailPendente = '';
 
   try { if (window.supabase && window.supabase.createClient) sb = window.supabase.createClient(SB_URL, SB_KEY, { auth: { persistSession: true, autoRefreshToken: true } }); } catch (e) { sb = null; }
+
+  // todo pedido ao backend do Aprumo vai com o "token" do login, para o servidor saber quem é
+  var fetchOriginal = window.fetch.bind(window);
+  window.fetch = async function(input, init){
+    try {
+      var url = typeof input === 'string' ? input : ((input && input.url) || '');
+      if (sb && url.indexOf(BACKEND_URL) === 0) {
+        var r = await sb.auth.getSession();
+        var tk = r && r.data && r.data.session ? r.data.session.access_token : null;
+        if (tk) {
+          init = Object.assign({}, init || {});
+          var h = new Headers(init.headers || {});
+          h.set('Authorization', 'Bearer ' + tk);
+          init.headers = h;
+        }
+      }
+    } catch (e) {}
+    return fetchOriginal(input, init);
+  };
 
   function padrao(){
     return { usuario:'Você', txs:[], metas:[], limites:{}, premium:false, plano:null, tema:'claro', email:'', recorrentes:[], dias:[], saldoInicial:{}, onbFeito:true, tourVisto:true };
