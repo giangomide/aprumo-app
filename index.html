@@ -3919,5 +3919,162 @@ window.addEventListener('load',()=>{
 })();
 
 </script>
-<script>document.addEventListener('touchstart',function(e){var el=e.target.closest&&e.target.closest('.scroll,.lancar-body,.chat-scroll,.pr-scroll,.modal,.pix-ov');if(!el)return;var max=el.scrollHeight-el.clientHeight;if(max<=0)return;if(el.scrollTop<=0)el.scrollTop=1;else if(el.scrollTop>=max)el.scrollTop=max-1;},{passive:true});</script></body>
+<script>document.addEventListener('touchstart',function(e){var el=e.target.closest&&e.target.closest('.scroll,.lancar-body,.chat-scroll,.pr-scroll,.modal,.pix-ov');if(!el)return;var max=el.scrollHeight-el.clientHeight;if(max<=0)return;if(el.scrollTop<=0)el.scrollTop=1;else if(el.scrollTop>=max)el.scrollTop=max-1;},{passive:true});</script><script>
+// ─── CHAT: ATALHO INSTANTÂNEO + SALVAR DIRETO COM DESFAZER + APRENDER CATEGORIAS ───
+(function(){
+  var css = '.cb-acoes{display:flex;gap:8px;margin-top:10px}' +
+    '.cb-btn{padding:8px 14px;border-radius:99px;font-size:13px;font-weight:600;font-family:var(--f);background:var(--n100);color:var(--n700)}' +
+    '.cb-btn.forte{background:var(--g100);color:var(--g800)}' +
+    '.cb-sub{font-size:13px;color:var(--n400);margin-top:6px}' +
+    'body.dark .cb-btn{background:#22322C;color:var(--n700)} body.dark .cb-btn.forte{background:#123D33;color:var(--g300)}';
+  var st = document.createElement('style'); st.textContent = css; document.head.appendChild(st);
+
+  function semAcento(s){ return String(s || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, ''); }
+
+  var PALAVRAS_CAT = {
+    alimentacao: ['ifood','almoco','almocei','janta','jantar','lanche','lanchei','cafe','padaria','restaurante','pizza','hamburguer','burguer','mc','mcdonalds','bk','sushi','acai','sorvete','comida','marmita','rappi','delivery','bar','cerveja','chopp','salgado','pastel','doce'],
+    transporte: ['uber','99','taxi','onibus','metro','trem','gasolina','combustivel','etanol','alcool','estacionamento','pedagio','bilhete','passagem','carro','moto','bike','patinete','cabify','posto'],
+    mercado: ['mercado','supermercado','feira','hortifruti','atacadao','assai','carrefour','pao','acougue'],
+    moradia: ['aluguel','condominio','luz','energia','agua','gas','internet','wifi','iptu','conta','reforma','faxina','diarista','casa'],
+    saude: ['farmacia','remedio','medico','consulta','dentista','exame','academia','hospital','plano','terapia','psicologo','vitamina','suplemento'],
+    roupas: ['roupa','roupas','tenis','camisa','camiseta','calca','vestido','sapato','shein','renner','zara','cueca','meia','bone'],
+    lazer: ['cinema','show','netflix','spotify','jogo','game','steam','ingresso','festa','balada','viagem','hotel','passeio','teatro','streaming','prime','disney','hbo','livro']
+  };
+  var RECEITA = /\b(recebi|ganhei|entrou|caiu|salario|me pagaram|pagaram|vendi|renda|freela|pix recebido|mesada)\b/;
+  var GASTO = /\b(gastei|paguei|comprei|torrei|gasto|pagamento|comprinha|saiu|foi)\b/;
+  var COMPLEXO = /\b(juntar|meta|metas|guardar|economizar|limite|limites|quanto|qual|quais|como|porque|por que|ajuda|dica|resumo|devo|posso|dia \d|segunda|terca|quarta|quinta|sexta|sabado|domingo|semana passada|mes passado)\b|\?/;
+  var PARAR = ['gastei','paguei','comprei','torrei','recebi','ganhei','entrou','caiu','me','pagaram','vendi','no','na','nos','nas','em','com','de','do','da','dos','das','pro','pra','para','um','uma','uns','umas','o','a','os','as','reais','real','rs','r','hoje','ontem','anteontem','agora','foi','saiu','e','mais','so','de novo'];
+
+  function chaveDe(desc){
+    var ps = semAcento(desc).replace(/[^a-z0-9 ]/g, ' ').split(/\s+/).filter(function(p){ return p && PARAR.indexOf(p) < 0 && !/^\d/.test(p); });
+    return ps[0] || '';
+  }
+  function categoriaPara(desc){
+    var ps = semAcento(desc).replace(/[^a-z0-9 ]/g, ' ').split(/\s+/).filter(Boolean);
+    var aprend = S.catAprendida || {};
+    for (var i = 0; i < ps.length; i++) if (aprend[ps[i]]) return aprend[ps[i]];
+    for (var cat in PALAVRAS_CAT) for (var j = 0; j < ps.length; j++) if (PALAVRAS_CAT[cat].indexOf(ps[j]) > -1) return cat;
+    return null;
+  }
+
+  // entende sozinho as mensagens simples; se não tiver certeza, devolve null e a IA assume
+  window.entenderRapido = function(texto){
+    var t = semAcento(texto).trim();
+    if (!t || t.length > 80 || COMPLEXO.test(t)) return null;
+    var nums = t.replace(/r\$\s*/g, ' ').match(/\d{1,3}(?:\.\d{3})+(?:,\d{1,2})?|\d+(?:[.,]\d{1,2})?/g);
+    if (!nums || nums.length !== 1) return null;
+    var bruto = nums[0];
+    var valor = /\.\d{3}/.test(bruto) ? parseFloat(bruto.replace(/\./g, '').replace(',', '.')) : parseFloat(bruto.replace(',', '.'));
+    if (!(valor > 0) || valor > 100000) return null;
+
+    var receita = RECEITA.test(t);
+    var gasto = GASTO.test(t);
+    if (receita && gasto) return null;
+
+    var desc = t.replace(bruto, ' ').replace(/r\$/g, ' ').replace(/[^a-z0-9 ]/g, ' ').split(/\s+/)
+      .filter(function(p){ return p && PARAR.indexOf(p) < 0; }).join(' ').trim();
+    var cat = categoriaPara(desc);
+    if (!receita && !gasto && !cat) return null; // nem verbo nem categoria conhecida: melhor a IA
+    var d = new Date(); d.setHours(12, 0, 0, 0);
+    if (/\banteontem\b/.test(t)) d.setDate(d.getDate() - 2); else if (/\bontem\b/.test(t)) d.setDate(d.getDate() - 1);
+
+    // mantém acentos da descrição original quando possível
+    var original = String(texto).replace(/r\$\s*/ig, '').replace(bruto, '').replace(/\s+/g, ' ').trim();
+    var palavrasOrig = original.split(' ').filter(function(p){ return PARAR.indexOf(semAcento(p).replace(/[^a-z0-9]/g, '')) < 0 && semAcento(p).replace(/[^a-z0-9]/g, ''); });
+    var descBonita = palavrasOrig.join(' ').slice(0, 30);
+    descBonita = descBonita ? descBonita.charAt(0).toUpperCase() + descBonita.slice(1) : '';
+
+    return { tipo: receita ? 'receita' : 'gasto', valor: Math.round(valor * 100) / 100, categoria: cat || 'outros', descricao: descBonita, ts: d.getTime() };
+  };
+
+  function quantoHoje(){
+    try { renderDash(); var v = document.querySelector('#d-hoje .hj-val'); var tg = document.querySelector('#d-hoje .hj-tag');
+      if (v && tg && tg.textContent.indexOf('ainda') > -1) return v.textContent; } catch (e) {}
+    return null;
+  }
+
+  // anota na hora e mostra "Desfazer" e "Editar"
+  function anotarDireto(dados, origem){
+    var ts = dados.ts || Date.now();
+    if (!dados.ts && dados.data) { var dd = new Date(dados.data + 'T12:00:00'); if (!isNaN(dd.getTime())) ts = dd.getTime(); }
+    var dObj = new Date(ts);
+    var tx = { id: 't' + Date.now() + Math.random().toString(36).slice(2, 5), tipo: dados.tipo, v: dados.valor, cat: dados.categoria || 'outros',
+      desc: dados.descricao || '', ts: ts, mk: dObj.getFullYear() + '-' + (dObj.getMonth() + 1), chat: 1, chave: chaveDe(dados.descricao || '') };
+    S.txs.push(tx); marcarDia(); save();
+
+    var pos = tx.tipo === 'receita';
+    var quando = mesmoDiaHoje(ts) ? '' : ' · ' + dObj.toLocaleDateString('pt-BR', { day: '2-digit', month: 'short' });
+    var el = document.getElementById('chat-scroll');
+    var empty = document.getElementById('chat-empty'); if (empty) empty.style.display = 'none';
+    var b = document.createElement('div'); b.className = 'chat-bubble ai';
+    var resta = pos ? null : quantoHoje();
+    b.innerHTML = '<div><strong>Anotado:</strong> ' + (pos ? '+ ' : '- ') + brl(tx.v) + ' em ' + catLabel(tx.cat) + quando + '</div>' +
+      (resta ? '<div class="cb-sub">Hoje ainda dá pra gastar ' + resta + '</div>' : '') +
+      '<div class="cb-acoes"><button class="cb-btn" data-a="desfazer">Desfazer</button><button class="cb-btn forte" data-a="editar">Editar</button></div>';
+    b.querySelector('[data-a="desfazer"]').onclick = function(){
+      S.txs = S.txs.filter(function(x){ return x.id !== tx.id; }); save();
+      b.innerHTML = '<div style="color:var(--n400)">Desfeito. Não anotei nada.</div>';
+      chatHistory.push({ role: 'assistant', content: '(o usuário desfez o último lançamento)' });
+      try { renderDash(); } catch (e) {}
+    };
+    b.querySelector('[data-a="editar"]').onclick = function(){ abrirEdicao(tx.id); };
+    el.appendChild(b); el.scrollTop = el.scrollHeight;
+    chatHistory.push({ role: 'assistant', content: 'Anotei ' + tx.tipo + ' de ' + tx.v + ' em ' + catLabel(tx.cat) + (tx.desc ? ' (' + tx.desc + ')' : '') });
+  }
+  function mesmoDiaHoje(ts){ var a = new Date(ts), b = new Date(); return a.getFullYear() === b.getFullYear() && a.getMonth() === b.getMonth() && a.getDate() === b.getDate(); }
+
+  // aprende quando a pessoa corrige a categoria de um lançamento
+  var salvarEdicaoAntes = salvarEdicao;
+  salvarEdicao = function(){
+    var tx = S.txs.find(function(x){ return x.id === txEditando; });
+    var antes = tx ? tx.cat : null;
+    salvarEdicaoAntes.apply(this, arguments);
+    if (tx && catEdit && antes !== catEdit) {
+      var k = tx.chave || chaveDe(tx.desc);
+      if (k) { if (!S.catAprendida) S.catAprendida = {}; S.catAprendida[k] = catEdit; save(); }
+    }
+  };
+  // e também quando ela lança pela tela normal com descrição
+  var salvarTxAntes2 = salvarTx;
+  salvarTx = function(){
+    var n = S.txs.length;
+    salvarTxAntes2.apply(this, arguments);
+    var tx = S.txs.length > n ? S.txs[S.txs.length - 1] : null;
+    if (tx && tx.desc && tx.cat && tx.cat !== 'outros') { var k = chaveDe(tx.desc); if (k) { if (!S.catAprendida) S.catAprendida = {}; S.catAprendida[k] = tx.cat; save(); } }
+  };
+
+  enviarChat = async function(){
+    var field = document.getElementById('chat-field'); var texto = field.value.trim(); if (!texto) return;
+    field.value = ''; addChatBubble('user', texto); chatHistory.push({ role: 'user', content: texto });
+
+    var rapido = entenderRapido(texto);
+    if (rapido) { anotarDireto(rapido, 'rapido'); return; }
+
+    var btn = document.getElementById('chat-send-btn'); btn.disabled = true;
+    var load = addChatLoading();
+    try {
+      var d = new Date(); var hoje = d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+      var resp = await fetch(BACKEND_URL + '/api/chat', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ mensagens: chatHistory, hoje: hoje }) });
+      var data = await resp.json(); if (load.parentNode) load.remove();
+      if (resp.status === 403) addChatBubble('ai', 'O chat é um recurso do Aprumo Plus.');
+      else if (resp.status === 401) addChatBubble('ai', 'Sua sessão expirou. Saia e entre de novo na sua conta.');
+      else if (!resp.ok) addChatBubble('ai', 'Deu um erro para conversar agora. Tenta de novo em instantes.');
+      else {
+        var acoes = data.acoes || []; var txt = data.texto || '';
+        var soLanc = acoes.length && acoes.every(function(a){ return a.tipo === 'registrar_lancamento'; });
+        if (txt && !soLanc) { addChatBubble('ai', txt); chatHistory.push({ role: 'assistant', content: txt }); }
+        acoes.forEach(function(a){ var x = a.dados || {};
+          if (a.tipo === 'registrar_lancamento' && x.valor > 0) anotarDireto(x, 'ia');
+          else if (a.tipo === 'criar_meta' && x.total > 0) addChatMetaCard(x);
+          else if (a.tipo === 'definir_limite' && x.categoria && x.valor > 0) addChatLimiteCard(x);
+        });
+        if (!acoes.length && !txt) addChatBubble('ai', 'Não entendi muito bem. Pode escrever de outro jeito?');
+      }
+    } catch (e) { if (load.parentNode) load.remove(); addChatBubble('ai', 'Deu um erro para conversar agora. Tenta de novo em instantes.'); }
+    btn.disabled = false;
+  };
+})();
+
+</script>
+</body>
 </html>
