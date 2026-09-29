@@ -4085,5 +4085,78 @@ window.addEventListener('load',()=>{
 })();
 
 </script>
+<script>
+// ─── LINHA DO TEMPO DAS METAS ───────────────────
+(function(){
+  var css = '.lt{background:var(--white);border:1px solid var(--n100);border-radius:18px;padding:20px 20px 8px;margin-bottom:14px}' +
+    '.lt-tit{font-size:calc(16px * var(--esc));font-weight:700;color:var(--n900);margin-bottom:4px}' +
+    '.lt-sub{font-size:calc(13px * var(--esc));color:var(--n400);margin-bottom:18px}' +
+    '.lt-item{position:relative;padding:0 0 22px 34px}' +
+    '.lt-item:before{content:"";position:absolute;left:9px;top:22px;bottom:-2px;width:2px;background:var(--n100)}' +
+    '.lt-item:last-child:before{display:none}' +
+    '.lt-dot{position:absolute;left:0;top:3px;width:20px;height:20px;border-radius:50%;border:2.5px solid var(--g500);background:var(--white);display:flex;align-items:center;justify-content:center}' +
+    '.lt-dot.ok{background:var(--g500)}' +
+    '.lt-dot.sem{border-color:var(--n200)}' +
+    '.lt-nome{font-size:calc(16px * var(--esc));font-weight:600;color:var(--n900)}' +
+    '.lt-quando{font-size:calc(14px * var(--esc));color:var(--n500);margin-top:3px}' +
+    '.lt-quando strong{color:var(--g700);font-weight:700}' +
+    '.lt-bar{height:5px;background:var(--n100);border-radius:99px;margin-top:9px;overflow:hidden;max-width:260px}' +
+    '.lt-fill{height:5px;border-radius:99px;background:var(--g500)}' +
+    '.lt-badge{display:inline-block;margin-top:8px;font-size:12px;font-weight:700;color:var(--g800);background:var(--g100);padding:5px 10px;border-radius:99px}' +
+    'body.dark .lt{background:#16221E;border-color:#26332E} body.dark .lt-dot{background:#16221E} body.dark .lt-dot.ok{background:var(--g500)} body.dark .lt-badge{background:#123D33;color:var(--g300)}';
+  var st = document.createElement('style'); st.textContent = css; document.head.appendChild(st);
+
+  function mesesAte(m){ if (m.atual >= m.total) return 0; if (!(m.mensal > 0)) return null; return Math.ceil((m.total - m.atual) / m.mensal); }
+  function indiceMes(n){ var d = new Date(); return d.getFullYear() * 12 + d.getMonth() + n; }
+  function nomeMesIdx(idx){ var d = new Date(Math.floor(idx / 12), idx % 12, 1); return d.toLocaleDateString('pt-BR', { month: 'short', year: 'numeric' }).replace('.', ''); }
+  function faltam(n){ return n === 1 ? 'falta 1 mês' : 'faltam ' + n + ' meses'; }
+
+  function montarLinha(){
+    var lista = document.getElementById('m-lista');
+    if (!lista || !S.metas || !S.metas.length) return;
+    var mudou = false;
+    var itens = S.metas.map(function(m){
+      var n = mesesAte(m), idx = n === null ? null : indiceMes(n);
+      // percebe quando a meta adiantou (ou atrasou) em relação à última previsão
+      if (idx !== null && n > 0) {
+        if (m.prevIdx && idx < m.prevIdx) { m.adiantou = m.prevIdx - idx; m.adiantouEm = Date.now(); mudou = true; }
+        else if (m.prevIdx && idx > m.prevIdx) { m.adiantou = 0; mudou = true; }
+        if (m.prevIdx !== idx) { m.prevIdx = idx; mudou = true; }
+      }
+      return { m: m, n: n, idx: idx };
+    });
+    if (mudou) save();
+
+    itens.sort(function(a, b){
+      var ka = a.n === 0 ? -1 : (a.idx === null ? 1e9 : a.idx);
+      var kb = b.n === 0 ? -1 : (b.idx === null ? 1e9 : b.idx);
+      return ka - kb;
+    });
+
+    var html = itens.map(function(it){
+      var m = it.m, pct = Math.min(100, Math.round((m.atual / m.total) * 100));
+      var quando, cls = '';
+      if (it.n === 0) { quando = '<strong>Concluída</strong> 🎉'; cls = 'ok'; }
+      else if (it.n === null) { quando = 'Sem data ainda: defina quanto guarda por mês'; cls = 'sem'; }
+      else quando = '<strong>' + nomeMesIdx(it.idx) + '</strong> · ' + faltam(it.n);
+      var recente = m.adiantou > 0 && m.adiantouEm && (Date.now() - m.adiantouEm) < 7 * 86400000;
+      var badge = recente ? '<div class="lt-badge">Você adiantou ' + (m.adiantou === 1 ? '1 mês' : m.adiantou + ' meses') + '!</div>' : '';
+      return '<div class="lt-item"><div class="lt-dot ' + cls + '">' + (cls === 'ok' ? '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>' : '') + '</div>' +
+        '<div class="lt-nome">' + (m.emoji || '') + ' ' + m.nome + '</div>' +
+        '<div class="lt-quando">' + quando + '</div>' +
+        '<div class="lt-bar"><div class="lt-fill" style="width:' + pct + '%"></div></div>' + badge + '</div>';
+    }).join('');
+
+    var box = document.createElement('div');
+    box.className = 'lt';
+    box.innerHTML = '<div class="lt-tit">Quando você chega lá</div><div class="lt-sub">No ritmo que você guarda hoje</div>' + html;
+    lista.insertBefore(box, lista.firstChild);
+  }
+
+  var renderMetasAntes = renderMetas;
+  renderMetas = function(){ renderMetasAntes.apply(this, arguments); try { montarLinha(); } catch (e) {} };
+})();
+
+</script>
 </body>
 </html>
