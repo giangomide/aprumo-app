@@ -4204,5 +4204,100 @@ window.addEventListener('load',()=>{
 })();
 
 </script>
+<script>
+// ─── TUTORIAL DE INSTALAÇÃO (10 segundos) ───────
+(function(){
+  var css = '.ins-ov{position:fixed;inset:0;z-index:400;background:rgba(5,15,12,.55);display:none;align-items:flex-end;justify-content:center;backdrop-filter:blur(2px)}' +
+    '.ins-ov.on{display:flex}' +
+    '.ins{width:100%;max-width:430px;background:var(--white);border-radius:26px 26px 0 0;padding:26px 24px calc(22px + var(--sab));animation:insUp .35s cubic-bezier(.2,.8,.2,1)}' +
+    '@keyframes insUp{from{transform:translateY(40px);opacity:0}to{transform:none;opacity:1}}' +
+    '.ins-top{display:flex;align-items:center;gap:14px;margin-bottom:16px}' +
+    '.ins-ic{width:56px;height:56px;border-radius:15px;background:#052E22;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;box-shadow:0 10px 24px rgba(5,46,34,.3);flex-shrink:0}' +
+    '.ins-ic b{color:#fff;font-size:30px;line-height:1;font-weight:800}.ins-ic i{width:20px;height:4px;border-radius:2px;background:#5DCAA5}' +
+    '.ins-t{font-size:calc(19px * var(--esc));font-weight:700;color:var(--n900);letter-spacing:-.3px;line-height:1.25}' +
+    '.ins-s{font-size:calc(14px * var(--esc));color:var(--n400);margin-top:3px}' +
+    '.ins-passos{display:flex;flex-direction:column;gap:12px;margin:6px 0 20px}' +
+    '.ins-p{display:flex;align-items:center;gap:14px;background:var(--n50);border-radius:14px;padding:13px 14px;font-size:calc(15px * var(--esc));color:var(--n700);line-height:1.4}' +
+    '.ins-n{width:28px;height:28px;border-radius:50%;background:var(--g800);color:#fff;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}' +
+    '.ins-p svg{vertical-align:-5px;margin:0 2px}' +
+    '.ins-seta{position:fixed;left:50%;bottom:10px;transform:translateX(-50%);z-index:401;display:none;color:#0D6B56;animation:insB 1s ease-in-out infinite}' +
+    '@keyframes insB{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,8px)}}' +
+    'body.dark .ins-p{background:#101A16}';
+  var st = document.createElement('style'); st.textContent = css; document.head.appendChild(st);
+
+  var promptInstalar = null;
+  window.addEventListener('beforeinstallprompt', function(e){ e.preventDefault(); promptInstalar = e; });
+
+  var ua = navigator.userAgent || '';
+  var ios = /iPad|iPhone|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  var android = /Android/i.test(ua);
+  var celular = ios || android;
+
+  var SHARE = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M8 7l4-4 4 4"/><path d="M5 11v8a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-8"/></svg>';
+  var MAIS = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="4"/><path d="M12 8v8M8 12h8"/></svg>';
+  var MENU = '<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="5" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="12" cy="19" r="2"/></svg>';
+
+  var ov = document.createElement('div'); ov.className = 'ins-ov'; document.body.appendChild(ov);
+  var seta = document.createElement('div'); seta.className = 'ins-seta';
+  seta.innerHTML = '<svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v16"/><path d="M6 14l6 6 6-6"/></svg>';
+  document.body.appendChild(seta);
+
+  function fechar(){ ov.classList.remove('on'); seta.style.display = 'none'; S.installVisto = true; save(); }
+
+  window.mostrarTutorialInstalar = function(){
+    var passos, botao = '';
+    if (ios) {
+      passos = [
+        'Toque em ' + SHARE + ' <strong>Compartilhar</strong>, na barra do Safari',
+        'Role e toque em ' + MAIS + ' <strong>Adicionar à Tela de Início</strong>',
+        'Toque em <strong>Adicionar</strong>. Pronto!'
+      ];
+    } else if (promptInstalar) {
+      passos = null;
+      botao = '<button class="btn-solid" id="ins-ja">Instalar agora</button>';
+    } else {
+      passos = [
+        'Toque em ' + MENU + ' no canto do navegador',
+        'Toque em <strong>Instalar app</strong> ou <strong>Adicionar à tela inicial</strong>',
+        'Confirme. Pronto!'
+      ];
+    }
+    ov.innerHTML = '<div class="ins">' +
+      '<div class="ins-top"><div class="ins-ic"><b>A</b><i></i></div><div><div class="ins-t">Deixe o Aprumo na sua tela</div><div class="ins-s">Leva 10 segundos. Ele abre como um app, em tela cheia.</div></div></div>' +
+      (passos ? '<div class="ins-passos">' + passos.map(function(p, i){ return '<div class="ins-p"><div class="ins-n">' + (i + 1) + '</div><div>' + p + '</div></div>'; }).join('') + '</div>' : '<div style="height:8px"></div>') +
+      (botao || '<button class="btn-solid" id="ins-ok">Entendi</button>') +
+      '<button class="btn-ghost conf-cancel" id="ins-no">Agora não</button></div>';
+    ov.classList.add('on');
+    if (ios) seta.style.display = 'block';
+    var ok = document.getElementById('ins-ok'); if (ok) ok.onclick = fechar;
+    var ja = document.getElementById('ins-ja');
+    if (ja) ja.onclick = async function(){
+      try { promptInstalar.prompt(); var r = await promptInstalar.userChoice; promptInstalar = null; if (r && r.outcome === 'accepted') toast('Aprumo instalado!'); } catch (e) {}
+      fechar();
+    };
+    document.getElementById('ins-no').onclick = fechar;
+  };
+  ov.addEventListener('click', function(e){ if (e.target === ov) fechar(); });
+
+  function talvezMostrar(){
+    if (!celular || S.installVisto || (typeof ehStandalone === 'function' && ehStandalone())) return;
+    if (typeof tourAtivo !== 'undefined' && tourAtivo) return;
+    var t = document.querySelector('.tela.ativa'); if (!t || t.id !== 'tela-dash') return;
+    if (document.querySelector('.overlay.on')) return;
+    mostrarTutorialInstalar();
+  }
+  // aparece na primeira vez que a pessoa chega no início (depois do tour, se ele estiver rodando)
+  var irAntesI = ir;
+  ir = function(tela){ irAntesI.apply(this, arguments); if (tela === 'dash') setTimeout(talvezMostrar, 1400); };
+  // o banner de instalar no início também abre o tutorial
+  var tipAntes = renderInstallTip;
+  renderInstallTip = function(){
+    tipAntes.apply(this, arguments);
+    var el = document.querySelector('#d-install .install-tip-txt');
+    if (el) { el.style.cursor = 'pointer'; el.onclick = mostrarTutorialInstalar; }
+  };
+})();
+
+</script>
 </body>
 </html>
