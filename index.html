@@ -1809,7 +1809,7 @@ const CATS = [
 ];
 const EMOJIS = ['✈️','🛡️','🏖️','📱','🎓','🏡','💍','🚀','🎸','🐶','🚴','📚','💻','🎬','🏋️','🌍'];
 
-let S = { usuario:'João', txs:[], metas:[], limites:{}, premium:false, plano:null, tema:'claro', email:'', recorrentes:[], dias:[], saldoInicial:{} };
+let S = { usuario:'Você', txs:[], metas:[], limites:{}, premium:false, plano:null, tema:'claro', email:'', recorrentes:[], dias:[], saldoInicial:{} };
 let mesView = null; // null = mês atual
 let tipoAtual = 'gasto';
 let catAtual = null;
@@ -3812,6 +3812,15 @@ window.addEventListener('load',()=>{
     await puxar(primeiraVez || S._uid !== uid);
     try { verificarStatusPremium(true); } catch (e) {}
     if (telaAtual() === 'login') ir('dash');
+    var n = (S.usuario || '').trim();
+    if (!n || n === 'João' || n === 'Você') {
+      setTimeout(function(){
+        pedirTexto({ titulo: 'Como você quer ser chamado?', texto: 'É assim que o Aprumo vai falar com você.', placeholder: 'Seu nome', max: 20, ok: 'Continuar', cancelar: 'Agora não' }, function(v){
+          var nome = (v || '').trim(); if (!nome) return;
+          S.usuario = nome.charAt(0).toUpperCase() + nome.slice(1); save(); try { renderDash(); } catch (e) {}
+        });
+      }, 400);
+    }
   }
 
   // ── tela de login ──
@@ -3833,7 +3842,7 @@ window.addEventListener('load',()=>{
       return;
     }
     emailPendente = email;
-    document.getElementById('lg-info').textContent = 'Mandamos um e-mail para ' + email + '. Abra e toque no link para entrar. Se vier um código, digite aqui embaixo. Olhe também o spam.';
+    document.getElementById('lg-info').textContent = 'Mandamos um código de 6 dígitos para ' + email + '. Olhe também o spam.';
     mostrarPasso(2);
     setTimeout(function(){ var c = document.getElementById('lg-codigo'); if (c) c.focus(); }, 200);
   }
@@ -3860,7 +3869,7 @@ window.addEventListener('load',()=>{
       '</div>' +
       '<div id="lg-passo2" style="display:none">' +
         '<div class="label" id="lg-info" style="line-height:1.5;margin-bottom:12px"></div>' +
-        '<input class="field" id="lg-codigo" inputmode="numeric" autocomplete="one-time-code" maxlength="10" placeholder="Código" style="letter-spacing:6px;font-size:22px;text-align:center">' +
+        '<input class="field" id="lg-codigo" inputmode="numeric" autocomplete="one-time-code" maxlength="10" placeholder="000000" style="letter-spacing:6px;font-size:22px;text-align:center">' +
         '<button class="btn-solid" id="lg-entrar" style="margin-top:12px">Entrar</button>' +
         '<button class="login-link" id="lg-voltar" style="width:100%;background:none">Usar outro e-mail</button>' +
       '</div>' +
