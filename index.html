@@ -1402,7 +1402,8 @@ html, body { height: 100%; height: 100dvh; overscroll-behavior: none; }
 body { position: fixed; top: 0; bottom: 0; left: 0; right: 0; width: 100%; }
 .tela { min-height: 0; }
 .scroll, .lancar-body, .chat-scroll, .pr-scroll, .modal { min-height: 0; overscroll-behavior: contain; touch-action: pan-y; -webkit-overflow-scrolling: touch; }
-#d-scroll { padding-bottom: 96px; } </style>
+#d-scroll { padding-bottom: 96px; }
+</style>
 </head>
 <body>
 
@@ -1819,7 +1820,7 @@ let planoSelecionado = 'anual';
 
 const PLANOS = {
   mensal: { nome:'Mensal', preco:30.00, por:'/mês', nota:'Cancele quando quiser, sem multa' },
-  anual:  { nome:'Anual',  preco:19.90, por:'/mês', nota:'R$ 239/ano — economize 34%', tag:'MAIS ESCOLHIDO' }
+  anual:  { nome:'Anual',  preco:19.90, por:'/mês', nota:'R$ 239,90/ano — economize 34%', tag:'MAIS ESCOLHIDO' }
 };
 const LIMITE_METAS_FREE = 1;
 
@@ -2518,14 +2519,6 @@ function renderPerfil(){
     <div class="pf-section">
       <div class="pf-section-label">Preferências</div>
       <div class="pf-group">
-        <button type="button" class="pf-row" onclick="toast('Em breve')">
-          <div class="pf-row-icon">${IC.bell}</div>
-          <div class="pf-row-body">
-            <div class="pf-row-title">Notificações</div>
-            <div class="pf-row-sub">Lembretes e alertas de limite</div>
-          </div>
-          ${IC.chev}
-        </button>
         <button type="button" class="pf-row" onclick="${S.premium?'verRecorrentes()':"ir('premium')"}">
           <div class="pf-row-icon">${IC.repeat}</div>
           <div class="pf-row-body">
@@ -2534,7 +2527,7 @@ function renderPerfil(){
           </div>
           ${IC.chev}
         </button>
-        <button type="button" class="pf-row" onclick="toast('Em breve')">
+        <button type="button" class="pf-row" onclick="toast('Por enquanto o Aprumo funciona em reais')">
           <div class="pf-row-icon">${IC.coin}</div>
           <div class="pf-row-body">
             <div class="pf-row-title">Moeda</div>
@@ -2581,9 +2574,19 @@ function renderPerfil(){
     <div class="pf-section">
       <div class="pf-section-label">Suporte</div>
       <div class="pf-group">
-        <button type="button" class="pf-row" onclick="toast('Em breve')">
+        <button type="button" class="pf-row" onclick="window.location.href='mailto:contatoaprumoapp@gmail.com?subject=Ajuda%20com%20o%20Aprumo'">
           <div class="pf-row-icon">${IC.help}</div>
-          <div class="pf-row-body"><div class="pf-row-title">Central de ajuda</div></div>
+          <div class="pf-row-body"><div class="pf-row-title">Fale com a gente</div><div class="pf-row-sub">Dúvidas, sugestões ou problemas</div></div>
+          ${IC.chev}
+        </button>
+        <button type="button" class="pf-row" onclick="window.open('/termos.html','_blank')">
+          <div class="pf-row-icon">${IC.sheet}</div>
+          <div class="pf-row-body"><div class="pf-row-title">Termos de Uso</div></div>
+          ${IC.chev}
+        </button>
+        <button type="button" class="pf-row" onclick="window.open('/privacidade.html','_blank')">
+          <div class="pf-row-icon">${IC.sheet}</div>
+          <div class="pf-row-body"><div class="pf-row-title">Política de Privacidade</div></div>
           ${IC.chev}
         </button>
         <button type="button" class="pf-row pf-danger-row" onclick="apagarTudo()">
@@ -2603,14 +2606,14 @@ function renderPerfil(){
           <div class="pf-row-body"><div class="pf-row-title">Como usar o app</div></div>
           ${IC.chev}
         </button>
-        <button type="button" class="pf-row" onclick="simularPrimeiraVez()">
+        ${S.email==='gianluca.gomide@gmail.com'?`<button type="button" class="pf-row" onclick="simularPrimeiraVez()">
           <div class="pf-row-icon">${IC.repeat}</div>
           <div class="pf-row-body">
             <div class="pf-row-title">Simular primeira vez</div>
             <div class="pf-row-sub">Apaga tudo e reinicia como recém-baixado</div>
           </div>
           ${IC.chev}
-        </button>
+        </button>`:''}
         <button type="button" class="pf-row" onclick="sair()">
           <div class="pf-row-icon">${IC.out}</div>
           <div class="pf-row-body"><div class="pf-row-title">Sair da conta</div></div>
@@ -3873,7 +3876,7 @@ window.addEventListener('load',()=>{
         '<button class="btn-solid" id="lg-entrar" style="margin-top:12px">Entrar</button>' +
         '<button class="login-link" id="lg-voltar" style="width:100%;background:none">Usar outro e-mail</button>' +
       '</div>' +
-      '<div class="login-note">Sem senha: a cada login a gente manda um código para o seu e-mail.</div>';
+      '<div class="login-note">Sem senha: a cada login a gente manda um código para o seu e-mail.<br>Ao entrar, você concorda com os <a href="/termos.html" target="_blank" style="color:inherit">Termos de Uso</a> e a <a href="/privacidade.html" target="_blank" style="color:inherit">Política de Privacidade</a>.</div>';
     document.getElementById('lg-enviar').onclick = enviarCodigo;
     document.getElementById('lg-entrar').onclick = confirmarCodigo;
     document.getElementById('lg-voltar').onclick = function(){ mostrarPasso(1); };
