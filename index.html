@@ -4301,5 +4301,84 @@ window.addEventListener('load',()=>{
 })();
 
 </script>
+<script>
+// ─── RENDA MENSAL ───────────────────────────────
+(function(){
+  function dRec(){ if (S.diaRecebe) return S.diaRecebe; var rr = (S.recorrentes || []).find(function(r){ return r.tipo === 'receita'; }); return rr ? rr.dia : 0; }
+  function dataDia(y, m, d){ var u = new Date(y, m + 1, 0).getDate(); return new Date(y, m, Math.min(d, u), 12); }
+  function lerValor(v){ var s = String(v || '').replace(/[^\d,\.]/g, ''); if (/\.\d{3}/.test(s)) s = s.replace(/\./g, ''); s = s.replace(',', '.'); var n = parseFloat(s); return isNaN(n) ? 0 : Math.round(n * 100) / 100; }
+
+  // no dia do pagamento, a renda entra sozinha (se a pessoa ainda não anotou)
+  function lancarSalario(){
+    if (!(S.renda > 0)) return false;
+    if ((S.recorrentes || []).some(function(r){ return r.tipo === 'receita'; })) return false;
+    var hoje = new Date(), y = hoje.getFullYear(), m = hoje.getMonth();
+    var d = dRec(); var data = dataDia(y, m, d > 0 ? d : 1);
+    if (data > hoje) return false;
+    var chave = y + '-' + (m + 1);
+    if (S.rendaLancada === chave) return false;
+    S.rendaLancada = chave;
+    var ini = data.getTime() - 5 * 86400000;
+    var ja = S.txs.some(function(t){ return t.tipo === 'receita' && t.ts >= ini && t.v >= S.renda * 0.6; });
+    if (!ja) {
+      S.txs.push({ id: 't' + Date.now() + 'r', tipo: 'receita', v: S.renda, cat: 'outros', desc: 'Salário', ts: data.getTime(), mk: y + '-' + (m + 1), auto: 1 });
+      save(); return true;
+    }
+    save(); return false;
+  }
+
+  window.salvarRenda = function(){
+    var i = document.getElementById('hj-renda'); var v = lerValor(i && i.value);
+    if (!(v > 0)) { toast('Digite quanto você ganha por mês'); return; }
+    S.renda = v;
+    // se o pagamento deste mês foi há mais de 2 dias, boa parte já pode ter sido gasta:
+    // começa a contar no próximo pagamento e pede quanto a pessoa tem agora
+    var hoje = new Date(), dia = dRec() > 0 ? dRec() : 1;
+    var pag = dataDia(hoje.getFullYear(), hoje.getMonth(), dia);
+    var jaFaz = (hoje - pag) / 86400000;
+    if (pag <= hoje && jaFaz > 2 && !S.rendaLancada) S.rendaLancada = hoje.getFullYear() + '-' + (hoje.getMonth() + 1);
+    save();
+    var entrou = lancarSalario();
+    renderDash();
+    if (entrou) toast('Pronto! Seu salário deste mês já entrou na conta');
+    else if (pag <= hoje && jaFaz > 2) toast('A partir do dia ' + dia + ' ele entra sozinho. Agora me diz quanto você tem hoje');
+    else toast('Pronto! No dia ' + dia + ' ele entra sozinho');
+  };
+  window.pularRenda = function(){ S.renda = 0; save(); renderDash(); };
+  window.editarRenda = function(){
+    pedirTexto({ titulo: 'Quanto você ganha por mês?', texto: 'Salário, mesada, bolsa ou o que for. No dia do pagamento, o Aprumo anota sozinho para você.', placeholder: 'Ex: 2.500', valor: S.renda > 0 ? String(S.renda).replace('.', ',') : '', ok: 'Salvar', cancelar: 'Cancelar' }, function(val){
+      var v = lerValor(val);
+      if (!(v > 0)) { S.renda = 0; save(); renderDash(); toast('Renda removida'); return; }
+      S.renda = v; save(); lancarSalario(); renderDash(); toast('Renda atualizada: ' + brl(v));
+    });
+  };
+
+  function ajustarCartao(){
+    var el = document.getElementById('d-hoje'); if (!el || !el.innerHTML) return;
+    if (!dRec()) return; // primeiro pergunta o dia
+    if (S.renda === undefined) {
+      el.innerHTML = '<div class="hj"><div class="hj-tag">Quanto posso gastar hoje</div><div class="hj-q">Quanto você ganha por mês?</div>' +
+        '<div class="hj-sub" style="margin-top:0;color:#fff;opacity:.85">Salário, mesada, bolsa ou o que for. No dia do pagamento, o Aprumo anota sozinho e já calcula quanto dá pra gastar por dia.</div>' +
+        '<div class="hj-row"><input class="hj-in" id="hj-renda" inputmode="decimal" placeholder="R$ 2.500"><button class="hj-ok" onclick="salvarRenda()">Salvar</button></div>' +
+        '<button class="hj-link" onclick="pularRenda()">Prefiro não dizer</button></div>';
+      return;
+    }
+    var chips = el.querySelector('.hj-chips');
+    if (chips && !chips.querySelector('.hj-renda-chip')) {
+      var b = document.createElement('button'); b.className = 'hj-chip hj-renda-chip';
+      b.textContent = S.renda > 0 ? '💼 Renda ' + brl(S.renda).replace(',00', '') : '💼 Informar renda';
+      b.onclick = editarRenda; chips.appendChild(b);
+    }
+  }
+
+  var renderDashAntesR = renderDash;
+  renderDash = function(){
+    try { lancarSalario(); } catch (e) {}
+    renderDashAntesR.apply(this, arguments);
+    try { ajustarCartao(); } catch (e) {}
+  };
+})();
+
+</script>
 </body>
 </html>
