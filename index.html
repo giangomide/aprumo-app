@@ -3812,6 +3812,7 @@ window.addEventListener('load',()=>{
     uid = session.user.id; emailConta = session.user.email;
     if (S._uid && S._uid !== uid) { var tema = S.tema; S = padrao(); S.tema = tema; }
     S.email = emailConta; S.onbFeito = true; salvarLocal();
+    if (telaAtual() === 'login') ir('dash');
     await puxar(primeiraVez || S._uid !== uid);
     try { verificarStatusPremium(true); } catch (e) {}
     if (telaAtual() === 'login') ir('dash');
@@ -3885,9 +3886,10 @@ window.addEventListener('load',()=>{
   }
 
   // sem login, só dá para ver a apresentação e a tela de login
+  function temSessaoSalva(){ try { return !!localStorage.getItem('sb-hvcufzqemzqoiottanac-auth-token'); } catch (e) { return false; } }
   var irAntes = ir;
   ir = function(tela){
-    if (sb && !uid && tela !== 'login' && tela !== 'onb') tela = 'login';
+    if (sb && !uid && !temSessaoSalva() && tela !== 'login' && tela !== 'onb') tela = 'login';
     return irAntes.call(this, tela);
   };
 
@@ -3925,7 +3927,7 @@ window.addEventListener('load',()=>{
       var r = await sb.auth.getSession();
       var session = r && r.data ? r.data.session : null;
       if (session) { await depoisDoLogin(session, false); }
-      else if (telaAtual() !== 'onb') { ir('login'); }
+      else if (telaAtual() !== 'onb') { uid = null; ir('login'); }
     } catch (e) {}
   });
 })();
