@@ -1492,7 +1492,7 @@ body { position: fixed; top: 0; bottom: 0; left: 0; right: 0; width: 100%; heigh
   </div>
   <button class="btn-solid" onclick="entrar()">Entrar</button>
   <div class="login-link">Criar conta</div>
-  <div class="login-note">Seus dados ficam salvos neste dispositivo.</div>
+  <div class="login-note">Seus dados ficam salvos neste dispositivo.<br><span style="font-size:11px;opacity:.8">Avanzi · 67.004.105 GIANLUCA BUSOLI CASCINO BAPTISTA GOMIDE · CNPJ 67.004.105/0001-90</span></div>
 </div>
 
 <!-- ═══ DASHBOARD ═══ -->
@@ -2581,7 +2581,7 @@ function renderPerfil(){
     <div class="pf-section">
       <div class="pf-section-label">Suporte</div>
       <div class="pf-group">
-        <button type="button" class="pf-row" onclick="window.location.href='mailto:contatoaprumoapp@gmail.com?subject=Ajuda%20com%20o%20Avanzi'">
+        <button type="button" class="pf-row" onclick="window.location.href='mailto:appavanzi@gmail.com?subject=Ajuda%20com%20o%20Avanzi'">
           <div class="pf-row-icon">${IC.help}</div>
           <div class="pf-row-body"><div class="pf-row-title">Fale com a gente</div><div class="pf-row-sub">Dúvidas, sugestões ou problemas</div></div>
           ${IC.chev}
@@ -3884,7 +3884,7 @@ window.addEventListener('load',()=>{
         '<button class="btn-solid" id="lg-entrar" style="margin-top:12px">Entrar</button>' +
         '<button class="login-link" id="lg-voltar" style="width:100%;background:none">Usar outro e-mail</button>' +
       '</div>' +
-      '<div class="login-note">Sem senha: a cada login a gente manda um código para o seu e-mail.<br>Ao entrar, você concorda com os <a href="/termos.html" target="_blank" style="color:inherit">Termos de Uso</a> e a <a href="/privacidade.html" target="_blank" style="color:inherit">Política de Privacidade</a>.</div>';
+      '<div class="login-note">Sem senha: a cada login a gente manda um código para o seu e-mail.<br>Ao entrar, você concorda com os <a href="/termos.html" target="_blank" style="color:inherit">Termos de Uso</a> e a <a href="/privacidade.html" target="_blank" style="color:inherit">Política de Privacidade</a>.<br><span style="font-size:11px;opacity:.8">Avanzi · 67.004.105 GIANLUCA BUSOLI CASCINO BAPTISTA GOMIDE · CNPJ 67.004.105/0001-90</span></div>';
     document.getElementById('lg-enviar').onclick = enviarCodigo;
     document.getElementById('lg-entrar').onclick = confirmarCodigo;
     document.getElementById('lg-voltar').onclick = function(){ mostrarPasso(1); };
