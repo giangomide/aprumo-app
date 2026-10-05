@@ -1,12 +1,12 @@
 {
-  "name": "Aprumo",
-  "short_name": "Aprumo",
+  "name": "Avanzi",
+  "short_name": "Avanzi",
   "description": "Organização financeira simples, para quem está começando do zero.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
-  "background_color": "#052E22",
-  "theme_color": "#052E22",
+  "background_color": "#0D0C0A",
+  "theme_color": "#0D0C0A",
   "lang": "pt-BR",
   "icons": [
     { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png" },

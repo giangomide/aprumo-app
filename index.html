@@ -5,33 +5,34 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="theme-color" content="#052E22">
+<meta name="theme-color" content="#0D0C0A">
 <meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="Aprumo">
+<meta name="apple-mobile-web-app-title" content="Avanzi">
 <meta name="description" content="Organização financeira simples, para quem está começando do zero.">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' rx='112' fill='%23052E22'/><text x='256' y='330' font-family='Helvetica,Arial,sans-serif' font-size='260' font-weight='700' fill='%23fff' text-anchor='middle'>A</text><rect x='186' y='360' width='140' height='14' rx='7' fill='%235DCAA5'/></svg>">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' rx='112' fill='%230D0C0A'/><text x='236' y='334' font-family='Didot,Georgia,serif' font-size='300' font-weight='500' fill='%23fff' text-anchor='middle'>A</text><circle cx='392' cy='312' r='22' fill='%23C9A86A'/></svg>">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/manifest.webmanifest">
-<title>Aprumo</title>
+<title>Avanzi</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Bodoni+Moda:opsz,wght@6..96,500&display=swap" rel="stylesheet">
 <style>
 :root {
-  --g900: #052E22;
-  --g800: #085041;
-  --g700: #0D6B56;
-  --g500: #1D9E75;
-  --g300: #5DCAA5;
-  --g100: #E8F5F0;
-  --g50:  #F3FAF7;
-  --n900: #0A0F0D;
-  --n700: #1C2B25;
-  --n500: #3D5249;
-  --n400: #5A7068;
-  --n300: #8FA89F;
-  --n200: #C4D3CF;
-  --n100: #E8EFED;
-  --n50:  #F5F8F7;
+  --g900: #0D0C0A;
+  --g800: #1A1814;
+  --g700: #8A6A2E;
+  --g500: #B8924A;
+  --g300: #D4B77E;
+  --g100: #F3EDE1;
+  --g50:  #FAF7F1;
+  --n900: #121110;
+  --n700: #2A2724;
+  --n500: #55504A;
+  --n400: #6E6862;
+  --n300: #A39C93;
+  --n200: #D6D0C7;
+  --n100: #ECE8E1;
+  --n50:  #F6F4F0;
+  --pos: #1F8A5B;
   --r500: #B91C1C;
   --r100: #FEE2E2;
   --a500: #D97706;
@@ -45,71 +46,72 @@
 }
 body.texto-grande { --esc: 1.18; }
 body.dark {
-  --g900: #08251E;
-  --g800: #0A3830;
-  --g700: #58D6AC;
-  --g500: #2CB88A;
-  --g300: #7FDCBB;
-  --g100: #123D33;
-  --g50:  #0E2E26;
-  --n900: #F0F5F3;
-  --n700: #D5E0DC;
-  --n500: #9BB0A9;
-  --n400: #A0B3AB;
-  --n300: #8B9E96;
-  --n200: #3A4B44;
-  --n100: #22322C;
-  --n50:  #16221E;
+  --g900: #0A0908;
+  --g800: #1E1B16;
+  --g700: #D9BC82;
+  --g500: #C9A86A;
+  --g300: #E2CB9A;
+  --g100: #2A2418;
+  --g50:  #1A1712;
+  --n900: #F4F1EC;
+  --n700: #DED8CF;
+  --n500: #ABA398;
+  --n400: #A9A196;
+  --n300: #948C82;
+  --n200: #3D3833;
+  --n100: #282420;
+  --n50:  #191714;
+  --pos: #4FC08D;
   --r500: #F87171;
   --r100: #3B1B1B;
   --a500: #FBBF24;
   --a100: #3A2E13;
-  --white: #0F1A16;
+  --white: #121110;
   --fw: #FFFFFF;
 }
 
 /* correções de contraste no modo escuro */
-body.dark .type-btn.on { background: #1B3A32; color: var(--g300); box-shadow: none; }
-body.dark .cat-item.on { background: #123D33; color: var(--g300); }
+body.dark .type-btn.on { background: #2A2418; color: var(--g300); box-shadow: none; }
+body.dark .cat-item.on { background: #2A2418; color: var(--g300); }
 body.dark .cat-item.on svg { color: var(--g300); }
-body.dark .quick-chip { background: #123D33; border-color: #1E5346; color: var(--g300); }
+body.dark .quick-chip { background: #2A2418; border-color: #4A3E26; color: var(--g300); }
 body.dark .quick-chip svg { color: var(--g300); }
-body.dark .meta-badge { background: #123D33; color: var(--g300); }
-body.dark .tx-icon { background: #12332B; }
+body.dark .meta-badge { background: #2A2418; color: var(--g300); }
+body.dark .tx-icon { background: #262016; }
 body.dark .tx-icon svg { color: var(--g300); }
 body.dark .tx-icon.neg { background: #3B1B1B; }
 body.dark .tx-icon.neg svg { color: #F87171; }
-body.dark .limite-icon { background: #12332B; }
+body.dark .limite-icon { background: #262016; }
 body.dark .limite-icon svg { color: var(--g300); }
-body.dark .compare-ico.down { background: #12332B; color: var(--g300); }
+body.dark .compare-ico.down { background: #262016; color: var(--g300); }
 body.dark .compare-ico.up { background: #3B1B1B; color: #F87171; }
-body.dark .install-tip { background: #12332B; border-color: #1E5346; }
+body.dark .install-tip { background: #262016; border-color: #4A3E26; }
 body.dark .install-tip svg { color: var(--g300) !important; }
-body.dark .pf-plan-tag.plus { background: var(--g300); color: #052E22; }
+body.dark .pf-plan-tag.plus { background: var(--g300); color: #0D0C0A; }
 body.dark .locked { background: var(--white); border-color: var(--n200); }
-body.dark .insight { background: #0A2F27; }
-body.dark .pr-cta { background: var(--fw); color: #052E22; }
+body.dark .insight { background: #1F1A12; }
+body.dark .pr-cta { background: var(--fw); color: #0D0C0A; }
 body.dark .login-wordmark { color: var(--g300); }
-body.dark .onb-btn { background: var(--fw); color: #052E22; }
-body.dark .btn-solid { background: var(--g500); color: #04231C; }
-body.dark .meta-action-btn.add { background: var(--g500); color: #04231C; }
-body.dark .locked-btn { background: var(--g500); color: #04231C; }
-body.dark .fab { background: var(--g500); color: #04231C; }
-body.dark .fchip.on { background: var(--g500); border-color: var(--g500); color: #04231C; }
-body.dark .bar-track { background: #22322C; }
-body.dark .progress-track { background: #22322C; }
-body.dark .limite-track { background: #22322C; }
-body.dark .switch { background: #3A4B44; }
+body.dark .onb-btn { background: var(--fw); color: #0D0C0A; }
+body.dark .btn-solid { background: var(--g500); color: #1A1610; }
+body.dark .meta-action-btn.add { background: var(--g500); color: #1A1610; }
+body.dark .locked-btn { background: var(--g500); color: #1A1610; }
+body.dark .fab { background: var(--g500); color: #1A1610; }
+body.dark .fchip.on { background: var(--g500); border-color: var(--g500); color: #1A1610; }
+body.dark .bar-track { background: #282420; }
+body.dark .progress-track { background: #282420; }
+body.dark .limite-track { background: #282420; }
+body.dark .switch { background: #3D3833; }
 body.dark .meta-card, body.dark .limite-card, body.dark .chart-card,
 body.dark .compare, body.dark .tx-row, body.dark .pf-group,
-body.dark .pf-stat, body.dark .card { background: #16221E; border-color: #26332E; }
+body.dark .pf-stat, body.dark .card { background: #191714; border-color: #2E2A25; }
 body.dark .field, body.dark .meta-input, body.dark .limite-field,
-body.dark .search-box, body.dark .rec-toggle { background: #101A16; border-color: #2A3A34; }
+body.dark .search-box, body.dark .rec-toggle { background: #141210; border-color: #332F2A; }
 body.dark .field:focus, body.dark .meta-input:focus,
-body.dark .limite-field:focus { background: #16221E; border-color: var(--g500); }
-body.dark .type-toggle { background: #101A16; }
-body.dark .cat-item { background: #101A16; }
-body.dark .toast { background: #E8EFED; color: #0A0F0D; }
+body.dark .limite-field:focus { background: #191714; border-color: var(--g500); }
+body.dark .type-toggle { background: #141210; }
+body.dark .cat-item { background: #141210; }
+body.dark .toast { background: #ECE8E1; color: #121110; }
 body.dark .alerta { background: #3A2E13; border-color: #5A4718; }
 body.dark .alerta.critico { background: #3B1B1B; border-color: #5C2626; }
 body.dark .alerta-txt { color: #EFE7D5; }
@@ -303,12 +305,16 @@ button:active { opacity: .8; }
   padding: 48px 28px calc(48px + var(--sab));
 }
 .login-wordmark {
-  font-size: 28px;
-  font-weight: 700;
-  color: var(--g800);
-  letter-spacing: -1px;
-  margin-bottom: 4px;
+  font-family: 'Bodoni Moda', 'Didot', Georgia, serif;
+  font-size: 40px;
+  font-weight: 500;
+  color: var(--n900);
+  letter-spacing: -.5px;
+  line-height: 1.1;
+  margin-bottom: 6px;
 }
+.wm-i { position: relative; display: inline-block; }
+.wm-i::after { content: ''; position: absolute; left: 50%; top: .14em; width: .16em; height: .16em; transform: translateX(-50%); border-radius: 50%; background: #C9A86A; }
 .login-tagline {
   font-size: 14px;
   color: var(--n400);
@@ -401,7 +407,7 @@ button:active { opacity: .8; }
 .tour-dots { display: flex; gap: 5px; }
 .tour-dot { width: 6px; height: 6px; border-radius: 99px; background: var(--n200); transition: all .2s; }
 .tour-dot.on { width: 16px; background: var(--g500); border-radius: 99px; }
-body.dark .tour-tip { background: #16221E; }
+body.dark .tour-tip { background: #191714; }
 .dash-row1 {
   display: flex;
   justify-content: space-between;
@@ -437,7 +443,7 @@ body.dark .tour-tip { background: #16221E; }
   background: var(--g800);
   color: var(--fw);
   display: flex; align-items: center; justify-content: center;
-  box-shadow: 0 6px 20px rgba(5,46,34,.35);
+  box-shadow: 0 6px 20px rgba(13,12,10,.35);
   z-index: 50;
 }
 .fab:active { transform: scale(.94); }
@@ -484,7 +490,7 @@ body.dark .btn-apagar:active { background: #4A2222; }
   padding: 5px 10px; border-radius: 99px;
   flex-shrink: 0;
 }
-body.dark .selo-plus { background: #123D33; color: var(--g300); }
+body.dark .selo-plus { background: #2A2418; color: var(--g300); }
 .rec-cadeado {
   width: 46px; height: 27px;
   display: flex; align-items: center; justify-content: center;
@@ -612,7 +618,7 @@ body.dark .selo-plus { background: #123D33; color: var(--g300); }
 .onb-dot.on { width: 22px; background: var(--g300); }
 .onb-btn {
   width: 100%; padding: 18px; min-height: 58px;
-  background: var(--fw); color: #052E22;
+  background: var(--fw); color: #0D0C0A;
   border-radius: 13px; font-size: 15px; font-weight: 700;
 }
 
@@ -749,7 +755,7 @@ body.dark .selo-plus { background: #123D33; color: var(--g300); }
 .tx-name { font-size: calc(16px * var(--esc)); font-weight: 500; color: var(--n900); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .tx-meta { font-size: calc(13px * var(--esc)); color: var(--n400); margin-top: 3px; }
 .tx-amount { font-size: calc(17px * var(--esc)); font-weight: 700; letter-spacing: -.3px; }
-.tx-amount.pos { color: var(--g700); }
+.tx-amount.pos { color: var(--pos); }
 .tx-amount.neg { color: var(--r500); }
 
 .alerta {
@@ -1007,7 +1013,7 @@ body.dark .selo-plus { background: #123D33; color: var(--g300); }
 .chat-card-label { color: var(--n400); }
 .chat-card-val { font-weight: 700; color: var(--n900); }
 .chat-card-amount { font-size: 20px; font-weight: 700; margin: 0 0 10px; }
-.chat-card-amount.pos { color: var(--g700); }
+.chat-card-amount.pos { color: var(--pos); }
 .chat-card-amount.neg { color: var(--r500); }
 .chat-card-actions { display: flex; gap: 8px; margin-top: 10px; }
 .chat-card-btn { flex: 1; padding: 10px; border-radius: 9px; font-size: 13px; font-weight: 700; font-family: var(--f); }
@@ -1060,17 +1066,17 @@ body.dark .selo-plus { background: #123D33; color: var(--g300); }
   width: 100%;
   padding: 12px;
   background: #fff;
-  color: #052E22;
+  color: #0D0C0A;
   border-radius: 10px;
   font-size: 14px;
   font-weight: 700;
   font-family: var(--f);
 }
-body.dark .chat-card { background: #16221E; border-color: var(--g500); }
-body.dark .chat-bubble.ai, body.dark .chat-bubble.loading { background: #16221E; border-color: #26332E; color: var(--n900); }
-body.dark .chat-input { background: #101A16; border-color: #2A3A34; color: var(--n900); }
-body.dark .chat-inputbar { background: #16221E; border-color: #26332E; }
-body.dark .chat-card-btn.no { background: #22322C; color: var(--n300); }
+body.dark .chat-card { background: #191714; border-color: var(--g500); }
+body.dark .chat-bubble.ai, body.dark .chat-bubble.loading { background: #191714; border-color: #2E2A25; color: var(--n900); }
+body.dark .chat-input { background: #141210; border-color: #332F2A; color: var(--n900); }
+body.dark .chat-inputbar { background: #191714; border-color: #2E2A25; }
+body.dark .chat-card-btn.no { background: #282420; color: var(--n300); }
 
 /* ══════════════════════
    MODAL EMOJI
@@ -1125,9 +1131,9 @@ body.dark .chat-card-btn.no { background: #22322C; color: var(--n300); }
   display: inline-block; margin-top: 5px;
   font-size: 10px; font-weight: 700; letter-spacing: .04em;
   padding: 3px 9px; border-radius: 99px;
-  background: rgba(93,202,165,.2); color: var(--g300);
+  background: rgba(212,183,126,.2); color: var(--g300);
 }
-.pf-plan-tag.plus { background: var(--g300); color: #052E22; }
+.pf-plan-tag.plus { background: var(--g300); color: #0D0C0A; }
 
 .pf-section { padding: 20px 16px 0; }
 .pf-section-label {
@@ -1253,7 +1259,7 @@ body.dark .chat-card-btn.no { background: #22322C; color: var(--n300); }
 .pr-feat:last-child { border-bottom: none; }
 .pr-feat-icon {
   width: 34px; height: 34px; border-radius: 9px;
-  background: rgba(93,202,165,.14);
+  background: rgba(212,183,126,.14);
   display: flex; align-items: center; justify-content: center;
   flex-shrink: 0; color: var(--g300);
 }
@@ -1271,7 +1277,7 @@ body.dark .chat-card-btn.no { background: #22322C; color: var(--n300); }
   transition: all .15s;
   position: relative;
 }
-.pr-plan.on { background: rgba(93,202,165,.14); border-color: var(--g300); }
+.pr-plan.on { background: rgba(212,183,126,.14); border-color: var(--g300); }
 .pr-radio {
   width: 20px; height: 20px; border-radius: 50%;
   border: 2px solid rgba(255,255,255,.25);
@@ -1300,7 +1306,7 @@ body.dark .chat-card-btn.no { background: #22322C; color: var(--n300); }
   margin: 0 24px 12px;
   padding: 16px;
   background: var(--fw);
-  color: #052E22;
+  color: #0D0C0A;
   border-radius: 13px;
   font-size: 15px; font-weight: 700;
   width: calc(100% - 48px);
@@ -1352,7 +1358,7 @@ body.dark .btn-solid.perigo { background: #E05252; color: #fff; }
 /* estado assinante */
 .pr-active-card {
   margin: 0 24px 24px;
-  background: rgba(93,202,165,.12);
+  background: rgba(212,183,126,.12);
   border: 1.5px solid var(--g300);
   border-radius: 16px;
   padding: 20px;
@@ -1416,24 +1422,24 @@ body { position: fixed; top: 0; bottom: 0; left: 0; right: 0; width: 100%; heigh
     <div class="onb-slide on" data-i="0">
       <div class="onb-visual">
         <svg width="150" height="150" viewBox="0 0 150 150" fill="none">
-          <circle cx="75" cy="75" r="58" stroke="#0D6B56" stroke-width="1.5"/>
-          <rect x="42" y="86" width="17" height="26" rx="4" fill="#14705C"/>
-          <rect x="66" y="66" width="17" height="46" rx="4" fill="#1D9E75"/>
-          <rect x="90" y="46" width="17" height="66" rx="4" fill="#5DCAA5"/>
+          <circle cx="75" cy="75" r="58" stroke="#2A2620" stroke-width="1.5"/>
+          <rect x="42" y="86" width="17" height="26" rx="4" fill="#8A6A2E"/>
+          <rect x="66" y="66" width="17" height="46" rx="4" fill="#B8924A"/>
+          <rect x="90" y="46" width="17" height="66" rx="4" fill="#D4B77E"/>
         </svg>
       </div>
       <div class="onb-title">Você não é ruim<br>com dinheiro.<br><em>Só nunca teve o hábito.</em></div>
-      <div class="onb-text">O Aprumo foi feito pra quem está começando do zero. Sem economês, sem planilha, sem culpa.</div>
+      <div class="onb-text">O Avanzi foi feito pra quem está começando do zero. Sem economês, sem planilha, sem culpa.</div>
     </div>
 
     <div class="onb-slide" data-i="1">
       <div class="onb-visual">
         <svg width="150" height="150" viewBox="0 0 150 150" fill="none">
-          <circle cx="75" cy="75" r="58" stroke="#0D6B56" stroke-width="1.5"/>
-          <circle cx="75" cy="75" r="40" stroke="#123D33" stroke-width="9"/>
-          <circle cx="75" cy="75" r="40" stroke="#5DCAA5" stroke-width="9" stroke-linecap="round"
+          <circle cx="75" cy="75" r="58" stroke="#2A2620" stroke-width="1.5"/>
+          <circle cx="75" cy="75" r="40" stroke="#2A2418" stroke-width="9"/>
+          <circle cx="75" cy="75" r="40" stroke="#D4B77E" stroke-width="9" stroke-linecap="round"
                   stroke-dasharray="251" stroke-dashoffset="90" transform="rotate(-90 75 75)"/>
-          <path d="M66 75l7 7 13-14" stroke="#5DCAA5" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M66 75l7 7 13-14" stroke="#D4B77E" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
       </div>
       <div class="onb-title">Metas que você<br><em>consegue ver crescendo.</em></div>
@@ -1443,23 +1449,23 @@ body { position: fixed; top: 0; bottom: 0; left: 0; right: 0; width: 100%; heigh
     <div class="onb-slide" data-i="2">
       <div class="onb-visual">
         <svg width="150" height="150" viewBox="0 0 150 150" fill="none">
-          <circle cx="75" cy="75" r="58" stroke="#0D6B56" stroke-width="1.5"/>
-          <path d="M45 58a11 11 0 0111-11h38a11 11 0 0111 11v22a11 11 0 01-11 11H83l-17 13v-13h-10a11 11 0 01-11-11V58z" stroke="#5DCAA5" stroke-width="4" stroke-linejoin="round"/>
-          <circle cx="64" cy="69" r="2.6" fill="#5DCAA5"/>
-          <circle cx="75" cy="69" r="2.6" fill="#5DCAA5"/>
-          <circle cx="86" cy="69" r="2.6" fill="#5DCAA5"/>
+          <circle cx="75" cy="75" r="58" stroke="#2A2620" stroke-width="1.5"/>
+          <path d="M45 58a11 11 0 0111-11h38a11 11 0 0111 11v22a11 11 0 01-11 11H83l-17 13v-13h-10a11 11 0 01-11-11V58z" stroke="#D4B77E" stroke-width="4" stroke-linejoin="round"/>
+          <circle cx="64" cy="69" r="2.6" fill="#D4B77E"/>
+          <circle cx="75" cy="69" r="2.6" fill="#D4B77E"/>
+          <circle cx="86" cy="69" r="2.6" fill="#D4B77E"/>
         </svg>
       </div>
-      <div class="onb-title">É só falar<br><em>com o Aprumo.</em></div>
-      <div class="onb-text">Escreva "gastei 20 no mercado" ou "quero juntar 500 pra viagem" no chat, e o Aprumo entende e organiza tudo pra você. Recurso do Aprumo Plus.</div>
+      <div class="onb-title">É só falar<br><em>com o Avanzi.</em></div>
+      <div class="onb-text">Escreva "gastei 20 no mercado" ou "quero juntar 500 pra viagem" no chat, e o Avanzi entende e organiza tudo pra você. Recurso do Avanzi Plus.</div>
     </div>
 
     <div class="onb-slide" data-i="3">
       <div class="onb-visual">
         <svg width="150" height="150" viewBox="0 0 150 150" fill="none">
-          <circle cx="75" cy="75" r="58" stroke="#0D6B56" stroke-width="1.5"/>
-          <path d="M75 40l26 10v20c0 16-11 29-26 32-15-3-26-16-26-32V50l26-10z" stroke="#5DCAA5" stroke-width="4" stroke-linejoin="round"/>
-          <path d="M64 76l8 8 15-17" stroke="#5DCAA5" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="75" cy="75" r="58" stroke="#2A2620" stroke-width="1.5"/>
+          <path d="M75 40l26 10v20c0 16-11 29-26 32-15-3-26-16-26-32V50l26-10z" stroke="#D4B77E" stroke-width="4" stroke-linejoin="round"/>
+          <path d="M64 76l8 8 15-17" stroke="#D4B77E" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
       </div>
       <div class="onb-title">Como quer<br><em>ser chamado?</em></div>
@@ -1478,7 +1484,7 @@ body { position: fixed; top: 0; bottom: 0; left: 0; right: 0; width: 100%; heigh
 
 <!-- ═══ LOGIN ═══ -->
 <div class="tela" id="tela-login">
-  <div class="login-wordmark">Aprumo</div>
+  <div class="login-wordmark">Avanz<span class="wm-i">ı</span></div>
   <div class="login-tagline">Sua vida financeira em ordem</div>
   <div class="login-fields">
     <input class="field" type="email" id="f-email" placeholder="E-mail">
@@ -1652,7 +1658,7 @@ body { position: fixed; top: 0; bottom: 0; left: 0; right: 0; width: 100%; heigh
   <div class="page-head">
     <div style="font-size:calc(14px * var(--esc));color:var(--g300);margin-bottom:5px">Limites</div>
     <div style="font-size:calc(23px * var(--esc));font-weight:700;color:var(--fw);letter-spacing:-.4px">Quanto posso gastar</div>
-    <div style="font-size:calc(14px * var(--esc));color:var(--g300);margin-top:4px">Escolha um valor máximo por mês e o Aprumo avisa quando chegar perto</div>
+    <div style="font-size:calc(14px * var(--esc));color:var(--g300);margin-top:4px">Escolha um valor máximo por mês e o Avanzi avisa quando chegar perto</div>
   </div>
   <div class="scroll">
     <div style="padding:16px" id="lim-lista"></div>
@@ -1673,7 +1679,7 @@ body { position: fixed; top: 0; bottom: 0; left: 0; right: 0; width: 100%; heigh
     </button>
     <div>
       <div style="font-size:calc(14px * var(--esc));color:var(--g300);margin-bottom:2px">Seu organizador particular</div>
-      <div style="font-size:calc(19px * var(--esc));font-weight:700;color:var(--fw);letter-spacing:-.3px">Fale com o Aprumo</div>
+      <div style="font-size:calc(19px * var(--esc));font-weight:700;color:var(--fw);letter-spacing:-.3px">Fale com o Avanzi</div>
     </div>
   </div>
   <div class="chat-scroll" id="chat-scroll">
@@ -1763,7 +1769,7 @@ body { position: fixed; top: 0; bottom: 0; left: 0; right: 0; width: 100%; heigh
   <div class="modal">
     <div class="modal-handle"></div>
     <div class="conf-title">Contas que repetem</div>
-    <div class="conf-text" style="margin-bottom:16px">O Aprumo lança essas sozinho, todo mês.</div>
+    <div class="conf-text" style="margin-bottom:16px">O Avanzi lança essas sozinho, todo mês.</div>
     <div id="rec-lista"></div>
     <button class="btn-ghost conf-cancel" onclick="document.getElementById('ov-rec').classList.remove('on')">Fechar</button>
   </div>
@@ -1908,9 +1914,9 @@ const FEATURES = [
     i:'<svg width="17" height="17" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="9" r="7"/><circle cx="9" cy="9" r="3.5"/><circle cx="9" cy="9" r="1" fill="currentColor" stroke="none"/></svg>' },
   { n:'Limites por categoria', d:'Defina tetos mensais e receba alertas antes de estourar.',
     i:'<svg width="17" height="17" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 2L2.5 4.5v4.7c0 3.8 2.8 7 6.5 7.6 3.7-.6 6.5-3.8 6.5-7.6V4.5L9 2z"/><path d="M6.5 9l1.8 1.8L11.5 7.5"/></svg>' },
-  { n:'Contas que repetem sozinhas', d:'Aluguel, Netflix, salário — o Aprumo lança todo mês por você.',
+  { n:'Contas que repetem sozinhas', d:'Aluguel, Netflix, salário — o Avanzi lança todo mês por você.',
     i:'<svg width="17" height="17" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a4 4 0 014-4h6l-2-2m2 2l-2 2"/><path d="M15 11a4 4 0 01-4 4H5l2 2m-2-2l2-2"/></svg>' },
-  { n:'Organizador particular por chat', d:'Fale seus gastos, metas e limites por mensagem — o Aprumo entende e organiza tudo pra você.',
+  { n:'Organizador particular por chat', d:'Fale seus gastos, metas e limites por mensagem — o Avanzi entende e organiza tudo pra você.',
     i:'<svg width="17" height="17" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 9a6.5 6.5 0 1112 4.2L15 15l-2-.8A6.5 6.5 0 012 9z"/></svg>' },
   { n:'Histórico completo', d:'Compare meses, veja evolução e exporte seus dados.',
     i:'<svg width="17" height="17" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 14V8M6.8 14V4M11.2 14V10M15.5 14V6"/></svg>' },
@@ -1926,8 +1932,8 @@ function renderPremium(){
         <div class="pr-crown">
           <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 18h16M4 18l-1.5-9L8 12l4-7 4 7 5.5-3L20 18"/></svg>
         </div>
-        <div class="pr-title">Você é <span>Aprumo Plus</span></div>
-        <div class="pr-sub">Todos os recursos liberados. Valeu por apoiar o Aprumo.</div>
+        <div class="pr-title">Você é <span>Avanzi Plus</span></div>
+        <div class="pr-sub">Todos os recursos liberados. Valeu por apoiar o Avanzi.</div>
       </div>
       <div class="pr-active-card">
         <div class="pr-active-title">Plano ${p.nome} ativo</div>
@@ -2019,7 +2025,7 @@ async function verificarStatusPremium(silencioso){
     save();
     if(mudou){
       renderPremium();
-      if(S.premium) toast('Bem-vindo ao Aprumo Plus!');
+      if(S.premium) toast('Bem-vindo ao Avanzi Plus!');
     }
   }catch(e){
     if(!silencioso) toast('Não consegui checar o pagamento agora');
@@ -2065,7 +2071,7 @@ async function assinar(){
 
 async function pagarPix(){if(!S.email){pedirTexto({titulo:'Qual seu e-mail?',texto:'Usamos pra confirmar seu pagamento e liberar o Plus.',placeholder:'seuemail@exemplo.com'},valor=>{const email=(valor||'').trim();if(!email||!email.includes('@')){toast('Digite um e-mail válido');return;}S.email=email;save();pagarPix();});return;}const aba=null;toast('Gerando o Pix...');try{const resp=await fetch(BACKEND_URL+'/api/pagar-pix',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:S.email,plano:planoSelecionado})});const data=await resp.json();if(!resp.ok||!data.checkout_url){if(aba)aba.close();const motivo=(data&&data.detalhe&&(data.detalhe.message||data.detalhe.error))||(data&&data.mensagem)||('Erro '+resp.status);confirmar({titulo:'Não consegui gerar o Pix',texto:'Motivo: '+motivo,ok:'Entendi',cancelar:'Fechar'});return;}abrirTelaPix(data);if(statusInterval)clearInterval(statusInterval);statusInterval=setInterval(()=>verificarStatusPremium(true),5000);}catch(e){if(aba)aba.close();toast('Deu erro pra gerar o Pix. Tenta de novo.');}} function cancelarPlano(){
   confirmar({
-    titulo:'Cancelar o Aprumo Plus?',
+    titulo:'Cancelar o Avanzi Plus?',
     texto:'Você mantém o acesso até o fim do período que já pagou.<br><br>'
         + '<strong>Nada é apagado</strong> — seus lançamentos, metas e limites continuam aqui.<br><br>'
         + 'Depois disso você volta ao plano grátis: 1 meta, sem limites e sem contas automáticas.',
@@ -2140,7 +2146,7 @@ function renderDash(){
         <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 18h16M4 18l-1.5-9L8 12l4-7 4 7 5.5-3L20 18"/></svg>
       </div>
       <div class="upsell-body">
-        <div class="upsell-title">Experimente o Aprumo Plus</div>
+        <div class="upsell-title">Experimente o Avanzi Plus</div>
         <div class="upsell-sub">Metas ilimitadas, limites e contas automáticas · a partir de R$ 14,99/mês</div>
       </div>
       <svg class="upsell-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3l5 5-5 5"/></svg>
@@ -2230,7 +2236,7 @@ function buildRecCtrl(){
     $('l-rec-sub').textContent='Aluguel, Netflix, salário';
   } else {
     el.innerHTML='<div class="rec-cadeado"><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="9" width="12" height="8" rx="2"/><path d="M7 9V6a3 3 0 016 0v3"/></svg></div>';
-    $('l-rec-sub').innerHTML='O Aprumo lança sozinho todo mês <span class="selo-plus">PLUS</span>';
+    $('l-rec-sub').innerHTML='O Avanzi lança sozinho todo mês <span class="selo-plus">PLUS</span>';
   }
 }
 function toggleRec(){
@@ -2427,7 +2433,7 @@ const IC = {
 function aplicarTema(){
   document.body.classList.toggle('dark', S.tema==='escuro');
   const meta=document.querySelector('meta[name="theme-color"]');
-  if(meta) meta.content = S.tema==='escuro' ? '#041F18' : '#052E22';
+  if(meta) meta.content = S.tema==='escuro' ? '#0A0908' : '#0D0C0A';
 }
 function aplicarTexto(){
   document.body.classList.toggle('texto-grande', !!S.textoGrande);
@@ -2447,7 +2453,7 @@ function renderPerfil(){
   $('pf-avatar').textContent = S.usuario.charAt(0).toUpperCase();
   $('pf-nome').textContent = S.usuario;
   $('pf-tag').innerHTML = S.premium
-    ? '<span class="pf-plan-tag plus">APRUMO PLUS</span>'
+    ? '<span class="pf-plan-tag plus">AVANZI PLUS</span>'
     : '<span class="pf-plan-tag">PLANO GRÁTIS</span>';
 
   const totalTx = S.txs.length;
@@ -2510,7 +2516,7 @@ function renderPerfil(){
           <div class="pf-row-icon">${IC.crown}</div>
           <div class="pf-row-body">
             <div class="pf-row-title">Assinatura</div>
-            <div class="pf-row-sub">${S.premium?'Aprumo Plus ativo · cancele quando quiser':'Ver planos e benefícios'}</div>
+            <div class="pf-row-sub">${S.premium?'Avanzi Plus ativo · cancele quando quiser':'Ver planos e benefícios'}</div>
           </div>
           ${IC.chev}
         </button>
@@ -2524,11 +2530,11 @@ function renderPerfil(){
           <div class="pf-row-icon">${IC.repeat}</div>
           <div class="pf-row-body">
             <div class="pf-row-title">Contas que repetem todo mês</div>
-            <div class="pf-row-sub">${S.premium ? (S.recorrentes||[]).length+' ativo(s)' : 'Disponível no Aprumo Plus'}</div>
+            <div class="pf-row-sub">${S.premium ? (S.recorrentes||[]).length+' ativo(s)' : 'Disponível no Avanzi Plus'}</div>
           </div>
           ${IC.chev}
         </button>
-        <button type="button" class="pf-row" onclick="toast('Por enquanto o Aprumo funciona em reais')">
+        <button type="button" class="pf-row" onclick="toast('Por enquanto o Avanzi funciona em reais')">
           <div class="pf-row-icon">${IC.coin}</div>
           <div class="pf-row-body">
             <div class="pf-row-title">Moeda</div>
@@ -2575,7 +2581,7 @@ function renderPerfil(){
     <div class="pf-section">
       <div class="pf-section-label">Suporte</div>
       <div class="pf-group">
-        <button type="button" class="pf-row" onclick="window.location.href='mailto:contatoaprumoapp@gmail.com?subject=Ajuda%20com%20o%20Aprumo'">
+        <button type="button" class="pf-row" onclick="window.location.href='mailto:contatoaprumoapp@gmail.com?subject=Ajuda%20com%20o%20Avanzi'">
           <div class="pf-row-icon">${IC.help}</div>
           <div class="pf-row-body"><div class="pf-row-title">Fale com a gente</div><div class="pf-row-sub">Dúvidas, sugestões ou problemas</div></div>
           ${IC.chev}
@@ -2622,7 +2628,7 @@ function renderPerfil(){
       </div>
     </div>
 
-    <div class="pf-version">Aprumo · versão 1.0</div>
+    <div class="pf-version">Avanzi · versão 1.0</div>
   `;
 }
 
@@ -2694,7 +2700,7 @@ function apagarTudoConfirmado(){
 function simularPrimeiraVez(){
   confirmar({
     titulo:'Simular primeira vez?',
-    texto:'Isso apaga tudo que está salvo neste aparelho e reinicia o app do zero — apresentação inicial, nome e o tour guiado, como se você tivesse acabado de baixar o Aprumo.',
+    texto:'Isso apaga tudo que está salvo neste aparelho e reinicia o app do zero — apresentação inicial, nome e o tour guiado, como se você tivesse acabado de baixar o Avanzi.',
     ok:'Simular', cancelar:'Voltar', perigo:true
   }, ()=>{
     try{ localStorage.removeItem(KEY); }catch(e){}
@@ -2807,8 +2813,8 @@ function apagarTx(){
 
 
 // ─── GRÁFICO DE CATEGORIAS ───────────────────────
-const PALETA_CLARA=['#0D6B56','#1D9E75','#3DB88C','#5DCAA5','#82D9BC','#A3E3CF','#C0EBDD','#D9F3EA'];
-const PALETA_ESCURA=['#58D6AC','#3DB88C','#2CB88A','#5DCAA5','#82D9BC','#9FE0C8','#B8E8D6','#CFF0E3'];
+const PALETA_CLARA=['#2A2620','#B8924A','#B8924A','#D4B77E','#DDC48E','#DCC9A3','#E8DABF','#F1E8D6'];
+const PALETA_ESCURA=['#D9BC82','#B8924A','#C9A86A','#D4B77E','#DDC48E','#D7C298','#E3D3B4','#EDE2CC'];
 function paleta(){ return document.body.classList.contains('dark') ? PALETA_ESCURA : PALETA_CLARA; }
 
 function renderChart(){
@@ -2876,12 +2882,12 @@ function renderCompare(){
 // ─── BACKUP: EXPORTAR / IMPORTAR ─────────────────
 function exportarDados(){
   try{
-    const dados={ app:'Aprumo', versao:1, exportadoEm:new Date().toISOString(), dados:S };
+    const dados={ app:'Avanzi', versao:1, exportadoEm:new Date().toISOString(), dados:S };
     const blob=new Blob([JSON.stringify(dados,null,2)],{type:'application/json'});
     const url=URL.createObjectURL(blob);
     const a=document.createElement('a');
     const hoje=new Date().toISOString().slice(0,10);
-    a.href=url; a.download='aprumo-backup-'+hoje+'.json';
+    a.href=url; a.download='avanzi-backup-'+hoje+'.json';
     document.body.appendChild(a); a.click();
     document.body.removeChild(a);
     setTimeout(()=>URL.revokeObjectURL(url),1000);
@@ -2980,13 +2986,13 @@ const TOUR_STEPS = [
   { tela:'dash', selector:'.fab',
     title:'Toque no + para lançar', text:'O botão verde flutuante abre a tela de lançar um gasto ou recebimento — leva uns 10 segundos.' },
   { tela:'dash', selector:'.chat-fab-btn',
-    title:'Ou só converse (Plus)', text:'Prefere digitar? "gastei 20 no mercado", "quero juntar 500 pra viagem"... o Aprumo entende e organiza tudo. Recurso exclusivo do Aprumo Plus.' },
+    title:'Ou só converse (Plus)', text:'Prefere digitar? "gastei 20 no mercado", "quero juntar 500 pra viagem"... o Avanzi entende e organiza tudo. Recurso exclusivo do Avanzi Plus.' },
   { tela:'lancar', selector:'.cats-grid',
     title:'Escolha a categoria', text:'Digite o valor lá em cima e escolha em que categoria ele entra. Simples assim.' },
   { tela:'metas', selector:'.btn-add-goal',
     title:'Crie suas metas', text:'Quer juntar dinheiro pra algo — viagem, reserva de emergência? Toque aqui pra criar uma meta e acompanhar o progresso.' },
   { tela:'limites', selector:'#lim-lista',
-    title:'Limites por categoria', text:'Defina um teto de gasto mensal por categoria e receba um aviso quando estiver perto de estourar. Recurso do Aprumo Plus.' },
+    title:'Limites por categoria', text:'Defina um teto de gasto mensal por categoria e receba um aviso quando estiver perto de estourar. Recurso do Avanzi Plus.' },
 ];
 let tourIdx=0;
 let tourChecked=false;
@@ -3066,7 +3072,7 @@ function renderInstallTip(){
       <div class="pf-row-icon" style="width:34px;height:34px;background:var(--g100)">
         <svg width="16" height="16" viewBox="0 0 18 18" fill="none" stroke="var(--g700)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="1.5" width="10" height="15" rx="2.5"/><line x1="7.5" y1="14" x2="10.5" y2="14"/></svg>
       </div>
-      <div class="install-tip-txt">Deixe o Aprumo na tela do seu celular: ${passo}.</div>
+      <div class="install-tip-txt">Deixe o Avanzi na tela do seu celular: ${passo}.</div>
       <button class="install-x" onclick="fecharTip()" aria-label="Fechar">
         <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="4" x2="12" y2="12"/><line x1="12" y1="4" x2="4" y2="12"/></svg>
       </button>
@@ -3133,7 +3139,7 @@ function exportarCSV(){
     const blob=new Blob([csv],{type:'text/csv;charset=utf-8'});
     const url=URL.createObjectURL(blob);
     const a=document.createElement('a');
-    a.href=url; a.download='aprumo-lancamentos-'+new Date().toISOString().slice(0,10)+'.csv';
+    a.href=url; a.download='avanzi-lancamentos-'+new Date().toISOString().slice(0,10)+'.csv';
     document.body.appendChild(a); a.click(); document.body.removeChild(a);
     setTimeout(()=>URL.revokeObjectURL(url),1000);
     toast('Planilha baixada');
@@ -3290,7 +3296,7 @@ function renderLimites(){
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="9" width="12" height="8" rx="2"/><path d="M7 9V6a3 3 0 016 0v3"/></svg>
         </div>
         <div class="locked-title">Limites por categoria</div>
-        <div class="locked-sub">Escolha quanto pode gastar por mês em cada coisa. Quando chegar perto, o Aprumo avisa. Disponível no Aprumo Plus.</div>
+        <div class="locked-sub">Escolha quanto pode gastar por mês em cada coisa. Quando chegar perto, o Avanzi avisa. Disponível no Avanzi Plus.</div>
         <button class="locked-btn" onclick="ir('premium')">Ver planos</button>
       </div>`;
     return;
@@ -3301,7 +3307,7 @@ function renderLimites(){
     const g=txs.filter(t=>t.tipo==='gasto'&&t.cat===cat.id).reduce((s,t)=>s+t.v,0);
     const pct=lim>0?Math.min(g/lim,1):0;
     const esc = document.body.classList.contains('dark');
-    let cls='ok', barColor = esc ? '#2CB88A' : '#1D9E75';
+    let cls='ok', barColor = esc ? '#C9A86A' : '#B8924A';
     if(pct>=1){cls='danger';barColor= esc ? '#F87171' : '#B91C1C';}
     else if(pct>=0.8){cls='warn';barColor= esc ? '#FBBF24' : '#D97706';}
 
@@ -3345,8 +3351,8 @@ function renderChatAccess(){
         <div class="locked-icon">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 18h16M4 18l-1.5-9L8 12l4-7 4 7 5.5-3L20 18"/></svg>
         </div>
-        <div class="locked-title">Fale com o Aprumo é Plus</div>
-        <div class="locked-sub">Lance gastos, crie metas e defina limites só de conversar — sem abrir formulário nenhum. Recurso exclusivo do Aprumo Plus.</div>
+        <div class="locked-title">Fale com o Avanzi é Plus</div>
+        <div class="locked-sub">Lance gastos, crie metas e defina limites só de conversar — sem abrir formulário nenhum. Recurso exclusivo do Avanzi Plus.</div>
         <button class="locked-btn" onclick="ir('premium')">Ver planos</button>
       </div>`;
   } else {
@@ -3465,15 +3471,15 @@ function addChatUpsellCard(catId){
   const card=document.createElement('div');
   card.className='chat-upsell-card';
   const sub = catId
-    ? 'Limites por categoria como '+catLabel(catId)+' avisam quando você está perto de estourar o orçamento. Disponível no Aprumo Plus.'
-    : 'Limites por categoria avisam quando você está perto de estourar o orçamento do mês. Disponível no Aprumo Plus.';
+    ? 'Limites por categoria como '+catLabel(catId)+' avisam quando você está perto de estourar o orçamento. Disponível no Avanzi Plus.'
+    : 'Limites por categoria avisam quando você está perto de estourar o orçamento do mês. Disponível no Avanzi Plus.';
   card.innerHTML=`
     <div class="chat-upsell-crown">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 18h16M4 18l-1.5-9L8 12l4-7 4 7 5.5-3L20 18"/></svg>
     </div>
-    <div class="chat-upsell-title">Isso é do Aprumo Plus</div>
+    <div class="chat-upsell-title">Isso é do Avanzi Plus</div>
     <div class="chat-upsell-sub">${sub}</div>
-    <button class="chat-upsell-btn" onclick="ir('premium')">Assinar Aprumo Plus</button>
+    <button class="chat-upsell-btn" onclick="ir('premium')">Assinar Avanzi Plus</button>
   `;
   el.appendChild(card);
   el.scrollTop=el.scrollHeight;
@@ -3543,8 +3549,8 @@ async function enviarChat(){
 
   const hoje = new Date().toISOString().slice(0,10);
   const catIds = CATS.map(c=>c.id).join(', ');
-  const RULES = 'Você é o organizador particular do Aprumo, um app de finanças pessoais em português do Brasil. '
-    + 'Você tem três ferramentas: registrar_lancamento (gastos e receitas do dia a dia), criar_meta (quando o usuário quer juntar dinheiro para algo) e definir_limite (definir um teto de gasto mensal numa categoria — recurso exclusivo do Aprumo Plus, a própria ferramenta cuida de avisar se o usuário não é assinante). '
+  const RULES = 'Você é o organizador particular do Avanzi, um app de finanças pessoais em português do Brasil. '
+    + 'Você tem três ferramentas: registrar_lancamento (gastos e receitas do dia a dia), criar_meta (quando o usuário quer juntar dinheiro para algo) e definir_limite (definir um teto de gasto mensal numa categoria — recurso exclusivo do Avanzi Plus, a própria ferramenta cuida de avisar se o usuário não é assinante). '
     + 'Hoje é '+hoje+' (formato AAAA-MM-DD). '
     + 'Categorias disponíveis para lançamentos e limites (use exatamente um destes ids): '+catIds+'. '
     + 'Quando o usuário descrever um gasto ou recebimento com um valor numérico claro, chame registrar_lancamento. '
@@ -3555,7 +3561,7 @@ async function enviarChat(){
     + 'Nunca invente um valor que o usuário não disse. Escolha a categoria mais próxima do enum, usando "outros" se não tiver certeza. '
     + 'Interprete termos relativos de data (hoje, ontem, anteontem) usando a data de hoje informada acima. '
     + 'Depois de chamar uma ferramenta, escreva só uma frase curta e natural confirmando o que entendeu — o app já mostra um cartão de confirmação para o usuário aprovar. '
-    + 'MUITO IMPORTANTE sobre definir_limite: se o resultado da ferramenta tiver o campo "erro" igual a "requer_plus", significa que NADA foi definido — o usuário está no plano grátis. Nesse caso, NUNCA diga "vou definir", "beleza, coloquei" ou qualquer frase que sugira que o limite foi criado. Em vez disso, diga claramente e em uma frase curta que limites por categoria são um recurso do Aprumo Plus e que apareceu um cartão abaixo para assinar. Se o resultado não tiver o campo "erro", aí sim o cartão de confirmação normal apareceu e você pode falar como se fosse acontecer assim que o usuário confirmar.';
+    + 'MUITO IMPORTANTE sobre definir_limite: se o resultado da ferramenta tiver o campo "erro" igual a "requer_plus", significa que NADA foi definido — o usuário está no plano grátis. Nesse caso, NUNCA diga "vou definir", "beleza, coloquei" ou qualquer frase que sugira que o limite foi criado. Em vez disso, diga claramente e em uma frase curta que limites por categoria são um recurso do Avanzi Plus e que apareceu um cartão abaixo para assinar. Se o resultado não tiver o campo "erro", aí sim o cartão de confirmação normal apareceu e você pode falar como se fosse acontecer assim que o usuário confirmar.';
     + 'Muito importante: responda sempre em texto simples, sem markdown — nunca use **, *, #, listas numeradas ou com traço, nem qualquer formatação. Escreva como uma mensagem normal de WhatsApp, em frases corridas.';
 
   const turns = [{role:'user', content:RULES}, ...chatHistory];
@@ -3601,14 +3607,14 @@ async function enviarChat(){
         },
         execute: async (input)=>{
           if(!S.premium && S.metas.length >= LIMITE_METAS_FREE){
-            return JSON.stringify({erro:'limite_do_plano_gratis', mensagem:'O plano grátis permite só 1 meta ativa. O usuário precisa do Aprumo Plus para criar mais metas.'});
+            return JSON.stringify({erro:'limite_do_plano_gratis', mensagem:'O plano grátis permite só 1 meta ativa. O usuário precisa do Avanzi Plus para criar mais metas.'});
           }
           addChatMetaCard(input);
           return JSON.stringify({status:'cartao_de_confirmacao_mostrado_ao_usuario'});
         }
       },{
         name:'definir_limite',
-        description:'Define um teto de gasto mensal para uma categoria. Recurso exclusivo do Aprumo Plus. Chame assim que o assunto "limite" surgir, mesmo sem categoria ou valor ainda — a ferramenta decide se deve pedir mais dados ou mostrar a oferta do Plus.',
+        description:'Define um teto de gasto mensal para uma categoria. Recurso exclusivo do Avanzi Plus. Chame assim que o assunto "limite" surgir, mesmo sem categoria ou valor ainda — a ferramenta decide se deve pedir mais dados ou mostrar a oferta do Plus.',
         inputSchema:{
           type:'object',
           properties:{
@@ -3635,7 +3641,7 @@ async function enviarChat(){
   }catch(e){
     if(loadingEl){ loadingEl.remove(); loadingEl=null; }
     let msg='Deu um erro para conversar agora. Tenta de novo em instantes.';
-    if(e && e.code==='not_granted') msg='Para usar o chat, você precisa permitir que o Aprumo converse com a IA quando o app perguntar.';
+    if(e && e.code==='not_granted') msg='Para usar o chat, você precisa permitir que o Avanzi converse com a IA quando o app perguntar.';
     else if(e && e.code==='rate_limited') msg='Muita coisa de uma vez. Espera um pouquinho e manda de novo.';
     else if(e && e.text) msg=e.text;
     if(aiBubble) aiBubble.textContent=msg; else addChatBubble('ai', msg);
@@ -3648,13 +3654,13 @@ async function enviarChat(){
 (function(){
   try{
     const icone = "data:image/svg+xml," + encodeURIComponent(
-      "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' rx='112' fill='#052E22'/><text x='256' y='330' font-family='Helvetica,Arial,sans-serif' font-size='260' font-weight='700' fill='#fff' text-anchor='middle'>A</text><rect x='186' y='360' width='140' height='14' rx='7' fill='#5DCAA5'/></svg>"
+      "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' rx='112' fill='#0D0C0A'/><text x='256' y='330' font-family='Helvetica,Arial,sans-serif' font-size='260' font-weight='700' fill='#fff' text-anchor='middle'>A</text><rect x='186' y='360' width='140' height='14' rx='7' fill='#D4B77E'/></svg>"
     );
     const manifest = {
-      name: "Aprumo", short_name: "Aprumo",
+      name: "Avanzi", short_name: "Avanzi",
       description: "Organização financeira simples.",
       start_url: ".", scope: ".", display: "standalone",
-      background_color: "#052E22", theme_color: "#052E22",
+      background_color: "#0D0C0A", theme_color: "#0D0C0A",
       icons: [
         { src: icone, sizes: "512x512", type: "image/svg+xml", purpose: "any" },
         { src: icone, sizes: "192x192", type: "image/svg+xml", purpose: "maskable" }
@@ -3723,7 +3729,7 @@ window.addEventListener('load',()=>{
   $('chat-field').addEventListener('keydown', e=>{ if(e.key==='Enter'){ enviarChat(); } });
 });
 </script>
-<script>(function(){var css='.pix-ov{position:fixed;inset:0;z-index:300;background:var(--g900);display:none;flex-direction:column;overflow-y:auto;max-width:430px;margin:0 auto}.pix-ov.on{display:flex}.pix-top{display:flex;justify-content:space-between;align-items:center;padding:calc(20px + var(--sat)) 22px 8px}.pix-x{width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.1);color:var(--g300);display:flex;align-items:center;justify-content:center;font-size:16px}.pix-body{padding:6px 24px calc(28px + var(--sab));text-align:center}.pix-tag{display:inline-block;font-size:11px;font-weight:600;color:var(--g300);background:rgba(255,255,255,.1);padding:4px 10px;border-radius:99px;margin-bottom:12px}.pix-titulo{font-size:24px;font-weight:700;color:#fff;letter-spacing:-.5px;margin-bottom:4px}.pix-valor{font-size:15px;color:var(--g300);margin-bottom:22px}.pix-valor strong{color:#fff;font-weight:700}.pix-qr{background:#fff;border-radius:18px;padding:14px;width:220px;height:220px;margin:0 auto 18px;display:flex;align-items:center;justify-content:center}.pix-qr img{width:100%;height:100%}.pix-codigo{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:12px 14px;font-size:12px;color:var(--g300);word-break:break-all;text-align:left;max-height:62px;overflow:hidden;margin-bottom:12px;font-family:ui-monospace,monospace}.pix-copiar{width:100%;padding:16px;border-radius:13px;background:#fff;color:#052E22;font-size:15px;font-weight:700;margin-bottom:22px}.pix-passos{text-align:left;display:flex;flex-direction:column;gap:12px;margin-bottom:24px}.pix-passo{display:flex;gap:12px;align-items:flex-start;font-size:14px;color:#fff;line-height:1.5}.pix-num{width:24px;height:24px;border-radius:50%;background:rgba(93,202,165,.18);color:var(--g300);font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}.pix-status{display:flex;align-items:center;justify-content:center;gap:10px;font-size:13px;color:var(--g300)}.pix-spin{width:16px;height:16px;border:2px solid rgba(93,202,165,.25);border-top-color:var(--g300);border-radius:50%;animation:pixspin 1s linear infinite}@keyframes pixspin{to{transform:rotate(360deg)}}.pix-ok{width:72px;height:72px;border-radius:50%;background:var(--g500);display:flex;align-items:center;justify-content:center;margin:40px auto 22px}';var st=document.createElement('style');st.textContent=css;document.head.appendChild(st);var ov=document.createElement('div');ov.className='pix-ov';document.body.appendChild(ov);var checar=null;function fechar(){ov.classList.remove('on');if(checar){clearInterval(checar);checar=null;}}function copiarManual(t){var ta=document.createElement('textarea');ta.value=t;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');}catch(e){}document.body.removeChild(ta);}function sucesso(){if(checar){clearInterval(checar);checar=null;}ov.querySelector('.pix-body').innerHTML='<div class="pix-ok"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div><div class="pix-titulo">Pagamento confirmado!</div><div class="pix-valor" style="margin-bottom:28px">Bem-vindo ao <strong>Aprumo Plus</strong>. Tudo já está liberado.</div><button class="pix-copiar" id="pix-comecar">Começar a usar</button>';document.getElementById('pix-comecar').onclick=function(){fechar();ir('dash');};}window.abrirTelaPix=function(data){var precos={mensal:'R$ 19,99',anual:'R$ 179,90'};var nomes={mensal:'Plano Mensal · 30 dias de Plus',anual:'Plano Anual · 12 meses de Plus'};var p=planoSelecionado;var codigo=data.qr_code||'';var img=data.qr_code_base64?'<div class="pix-qr"><img alt="QR Code Pix" src="data:image/png;base64,'+data.qr_code_base64+'"></div>':'';ov.innerHTML='<div class="pix-top"><div style="font-size:15px;font-weight:700;color:#fff">Aprumo</div><button class="pix-x" id="pix-fechar" aria-label="Fechar">✕</button></div><div class="pix-body"><div class="pix-tag">'+nomes[p]+'</div><div class="pix-titulo">Pague com Pix</div><div class="pix-valor">Total: <strong>'+precos[p]+'</strong></div>'+img+'<div class="pix-codigo" id="pix-codigo"></div><button class="pix-copiar" id="pix-copiar">Copiar código Pix</button><div class="pix-passos"><div class="pix-passo"><div class="pix-num">1</div><div>Copie o código ou escaneie o QR Code</div></div><div class="pix-passo"><div class="pix-num">2</div><div>No app do seu banco, escolha <strong>Pix Copia e Cola</strong> e cole o código</div></div><div class="pix-passo"><div class="pix-num">3</div><div>Confirme o pagamento. O Plus é liberado aqui na hora</div></div></div><div class="pix-status"><div class="pix-spin"></div><span>Aguardando pagamento...</span></div></div>';document.getElementById('pix-codigo').textContent=codigo;document.getElementById('pix-fechar').onclick=fechar;document.getElementById('pix-copiar').onclick=function(){var b=this;function ok(){b.textContent='Código copiado ✓';setTimeout(function(){b.textContent='Copiar código Pix';},2500);}if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(codigo).then(ok).catch(function(){copiarManual(codigo);ok();});}else{copiarManual(codigo);ok();}};ov.classList.add('on');ov.scrollTop=0;if(checar)clearInterval(checar);checar=setInterval(function(){if(S.premium){sucesso();}},1000);};})();</script><script>(function(){var css='.hoje{margin:0 16px 8px;background:linear-gradient(135deg,#0D6B56 0%,#052E22 100%);border-radius:18px;padding:18px 20px}.hoje-tag{font-size:12px;font-weight:600;color:#5DCAA5;margin-bottom:6px}.hoje-val{font-size:calc(34px * var(--esc));font-weight:700;color:#fff;letter-spacing:-1px;line-height:1.1}.hoje-sub{font-size:calc(13px * var(--esc));color:#5DCAA5;margin-top:8px;line-height:1.5}.hoje-bar{height:6px;background:rgba(255,255,255,.15);border-radius:99px;margin-top:12px;overflow:hidden}.hoje-fill{height:6px;border-radius:99px;background:#5DCAA5}.hoje-btn{margin-top:12px;padding:10px 16px;background:rgba(255,255,255,.14);color:#fff;border-radius:10px;font-size:13px;font-weight:600;font-family:var(--f)}';var st=document.createElement('style');st.textContent=css;document.head.appendChild(st);function mesmoDia(a,b){return a.getFullYear()===b.getFullYear()&&a.getMonth()===b.getMonth()&&a.getDate()===b.getDate();}function renderHoje(){var sc=document.getElementById('d-scroll');if(!sc)return;var el=document.getElementById('d-hoje');if(!el){el=document.createElement('div');el.id='d-hoje';sc.insertBefore(el,sc.firstChild);}if(!ehMesAtual()){el.innerHTML='';return;}var txs=txMes();var hoje=new Date();var rec=0,gas=0,gHoje=0;txs.forEach(function(t){if(t.tipo==='receita')rec+=t.v;else{gas+=t.v;if(mesmoDia(new Date(t.ts),hoje))gHoje+=t.v;}});var ini=saldoIni();if(ini<=0&&rec<=0){el.innerHTML='<div class="hoje"><div class="hoje-tag">Quanto posso gastar hoje</div><div class="hoje-sub" style="margin-top:0;color:#fff;font-size:15px">Anote quanto você recebeu este mês, ou informe quanto tinha no começo do mês, e o Aprumo calcula quanto dá pra gastar por dia.</div><button class="hoje-btn" onclick="editarSaldoInicial()">Informar meu saldo</button></div>';return;}var mk=mesKey();var fixas=(S.recorrentes||[]).filter(function(r){return r.tipo==='gasto'&&r.ultimoMes!==mk;}).reduce(function(a,r){return a+r.v;},0);var metas=(S.metas||[]).filter(function(m){return m.atual<m.total&&m.mensal>0;}).reduce(function(a,m){return a+m.mensal;},0);var ultimo=new Date(hoje.getFullYear(),hoje.getMonth()+1,0).getDate();var dias=ultimo-hoje.getDate()+1;var base=ini+rec-(gas-gHoje)-fixas-metas;var porDia=base/dias;var partes=[];if(fixas>0)partes.push(brl(fixas)+' de contas fixas');if(metas>0)partes.push(brl(metas)+' para suas metas');var desc=partes.length?'Já descontando '+partes.join(' e ')+'.':'';if(porDia<=0){el.innerHTML='<div class="hoje"><div class="hoje-tag">Quanto posso gastar hoje</div><div class="hoje-val">R$ 0</div><div class="hoje-sub">Este mês o dinheiro já está todo comprometido. Hoje é dia de segurar. '+desc+'</div></div>';return;}var resta=porDia-gHoje;var pct=Math.min(gHoje/porDia,1)*100;if(resta<0){el.innerHTML='<div class="hoje"><div class="hoje-tag">Quanto posso gastar hoje</div><div class="hoje-val" style="color:#FCA5A5">'+brl(Math.abs(resta))+' acima</div><div class="hoje-sub">Hoje você passou do limite de '+brl(porDia)+'. Sem culpa: amanhã o valor se ajusta sozinho.</div><div class="hoje-bar"><div class="hoje-fill" style="width:100%;background:#FCA5A5"></div></div></div>';return;}el.innerHTML='<div class="hoje"><div class="hoje-tag">Hoje você ainda pode gastar</div><div class="hoje-val">'+brl(resta)+'</div><div class="hoje-sub">São '+brl(porDia)+' por dia até o fim do mês ('+dias+(dias===1?' dia':' dias')+'). '+desc+'</div><div class="hoje-bar"><div class="hoje-fill" style="width:'+pct+'%"></div></div></div>';}var orig=renderDash;renderDash=function(){orig.apply(this,arguments);try{renderHoje();}catch(e){}};})();</script><script>(function(){ var css='.hj{margin:0 16px 8px;background:linear-gradient(135deg,#0D6B56 0%,#052E22 100%);border-radius:18px;padding:18px 20px;color:#fff}' +'.hj-tag{font-size:12px;font-weight:600;color:#5DCAA5;margin-bottom:6px}' +'.hj-val{font-size:calc(34px * var(--esc));font-weight:700;color:#fff;letter-spacing:-1px;line-height:1.1}' +'.hj-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}' +'.hj-chip{display:inline-flex;align-items:center;gap:5px;background:rgba(255,255,255,.12);color:#fff;font-size:12px;font-weight:600;padding:6px 10px;border-radius:99px;font-family:var(--f)}' +'.hj-sub{font-size:calc(13px * var(--esc));color:#5DCAA5;margin-top:10px;line-height:1.5}' +'.hj-bar{height:6px;background:rgba(255,255,255,.15);border-radius:99px;margin-top:12px;overflow:hidden}' +'.hj-fill{height:6px;border-radius:99px;background:#5DCAA5}' +'.hj-q{font-size:calc(19px * var(--esc));font-weight:700;color:#fff;margin-bottom:6px;letter-spacing:-.3px}' +'.hj-row{display:flex;gap:8px;margin-top:14px}' +'.hj-in{flex:1;min-width:0;padding:13px 14px;border-radius:11px;border:1.5px solid rgba(255,255,255,.2);background:rgba(255,255,255,.08);color:#fff;font-size:16px;font-family:var(--f);outline:none}' +'.hj-in::placeholder{color:rgba(255,255,255,.4)}' +'.hj-ok{padding:13px 18px;border-radius:11px;background:#fff;color:#052E22;font-size:15px;font-weight:700;font-family:var(--f)}' +'.hj-link{margin-top:10px;font-size:12.5px;font-weight:600;color:#5DCAA5;font-family:var(--f);text-decoration:underline}' +'.sm-link{display:inline-block;margin:0 0 14px;font-size:13px;font-weight:700;color:var(--g700);font-family:var(--f);text-decoration:underline;background:none}' +'.sm-inline{font-weight:700;color:var(--g700);text-decoration:underline;margin-left:6px;cursor:pointer}' +'.dt-chips{display:flex;gap:8px;margin-bottom:10px}' +'.dt-chip{flex:1;padding:12px 8px;border-radius:11px;background:var(--n50);border:1.5px solid transparent;font-size:calc(14px * var(--esc));font-weight:600;color:var(--n500);font-family:var(--f)}' +'.dt-chip.on{background:var(--g50);border-color:var(--g500);color:var(--g800)}'; var st=document.createElement('style');st.textContent=css;document.head.appendChild(st); var TROCAS=[['.','.'],[' · a partir de R$ 14,99/mês',' · a partir de R$ 14,99/mês'],['Ver planos','Ver planos'],['Disponível no Aprumo Plus.','Disponível no Aprumo Plus.']]; function limpar(root){ if(!root)return; var w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,null,false);var n; while((n=w.nextNode())){var t=n.nodeValue;if(t.indexOf('7 dias')===-1)continue;TROCAS.forEach(function(p){t=t.split(p[0]).join(p[1]);});n.nodeValue=t;} } function tirarSoltos(){ Array.prototype.slice.call(document.body.childNodes).forEach(function(n){if(n.nodeType===3&&n.nodeValue.trim())n.parentNode.removeChild(n);}); } try{TOUR_STEPS.forEach(function(s){TROCAS.forEach(function(p){s.text=s.text.split(p[0]).join(p[1]);});});}catch(e){} var SM={ limites:{t:'Limites por categoria',x:'Imagine ser avisado <strong>antes</strong> de passar do ponto: "o iFood do mês já chegou em 80%". Você escolhe quanto quer gastar em cada coisa e o Aprumo te dá um toque na hora certa.<br><br>Sem planilha e sem susto no fim do mês. É o jeito mais fácil de parar de se perguntar <strong>"pra onde foi meu dinheiro?"</strong>'}, metas:{t:'Metas ilimitadas',x:'Viagem, reserva de emergência, celular novo, aquele presente... A vida tem mais de um sonho ao mesmo tempo.<br><br>Com o Plus você acompanha <strong>todas as suas metas lado a lado</strong> e vê exatamente em que mês vai chegar em cada uma.'}, rec:{t:'Contas que se lançam sozinhas',x:'Aluguel, Netflix, academia, salário: você cadastra <strong>uma vez só</strong> e o Aprumo anota todo mês, no dia certo.<br><br>Menos coisa pra lembrar, e o seu "quanto posso gastar hoje" já desconta essas contas <strong>antes</strong> delas chegarem.'}, chat:{t:'Fale com o Aprumo',x:'Manda "gastei 32 no almoço" do jeito que você fala com um amigo e pronto, está anotado. Quer juntar 2 mil pra viagem? É só dizer.<br><br>Leva <strong>3 segundos</strong>. É o jeito mais fácil de manter o hábito, mesmo nos dias corridos.'} }; window.saibaMais=function(k){var s=SM[k];if(!s)return;confirmar({titulo:s.t,texto:s.x+'<br><br><span style="font-size:13px">Aprumo Plus a partir de <strong>R$ 14,99/mês</strong>. Pague no Pix, libera na hora.</span>',ok:'Quero o Aprumo Plus',cancelar:'Agora não'},function(){ir('premium');});}; function botaoSM(k){return '<button type="button" class="sm-link" onclick="saibaMais(\''+k+'\')">Saiba mais</button><br>';} function injetarSM(sel,k){var el=document.querySelector(sel);if(!el||el.querySelector('.sm-link'))return;var sub=el.querySelector('.locked-sub');if(!sub)return;sub.insertAdjacentHTML('afterend',botaoSM(k));} var oLim=renderLimites;renderLimites=function(){oLim.apply(this,arguments);if(!S.premium)injetarSM('#lim-lista .locked','limites');limpar(document.getElementById('lim-lista'));}; var oMet=renderMetas;renderMetas=function(){oMet.apply(this,arguments);if(!S.premium)injetarSM('#m-lista .locked','metas');}; var oChat=renderChatAccess;renderChatAccess=function(){oChat.apply(this,arguments);if(!S.premium)injetarSM('#chat-scroll .locked','chat');limpar(document.getElementById('chat-scroll'));}; var oRec=buildRecCtrl;buildRecCtrl=function(){oRec.apply(this,arguments);if(!S.premium){var sub=document.getElementById('l-rec-sub');if(sub&&!sub.querySelector('.sm-inline'))sub.insertAdjacentHTML('beforeend','<span class="sm-inline" onclick="event.stopPropagation();saibaMais(\'rec\')">Saiba mais</span>');}}; var oUp=addChatUpsellCard;addChatUpsellCard=function(){oUp.apply(this,arguments);var sc=document.getElementById('chat-scroll');limpar(sc);var cards=sc.querySelectorAll('.chat-upsell-sub');var c=cards[cards.length-1];if(c&&!c.querySelector('.sm-inline'))c.insertAdjacentHTML('beforeend','<span class="sm-inline" style="color:#fff" onclick="saibaMais(\'limites\')">Saiba mais</span>');}; function mesmoDia(a,b){return a.getFullYear()===b.getFullYear()&&a.getMonth()===b.getMonth()&&a.getDate()===b.getDate();} function dataDia(y,m,d){var u=new Date(y,m+1,0).getDate();return new Date(y,m,Math.min(d,u));} function fmtD(d){return d.getDate()+'/'+d.toLocaleDateString('pt-BR',{month:'short'}).replace('.','');} function diaRecebe(){if(S.diaRecebe)return S.diaRecebe;var rr=(S.recorrentes||[]).find(function(r){return r.tipo==='receita';});return rr?rr.dia:0;} window.salvarDiaRecebe=function(){var i=document.getElementById('hj-dia');var d=parseInt(i&&i.value,10);if(isNaN(d)||d<1||d>31){toast('Digite um dia entre 1 e 31');return;}S.diaRecebe=d;save();renderDash();toast('Pronto: você recebe dia '+d);}; window.semDiaFixo=function(){S.diaRecebe=-1;save();renderDash();toast('Beleza, vou dividir até o fim do mês');}; window.mudarDiaRecebe=function(){pedirTexto({titulo:'Em que dia do mês você recebe?',texto:'Salário, mesada ou sua principal entrada. O Aprumo divide o dinheiro até esse dia.',numero:true,placeholder:'Ex: 5',valor:S.diaRecebe>0?String(S.diaRecebe):''},function(v){var d=parseInt(v,10);if(isNaN(d)||d<1||d>31){toast('Digite um dia entre 1 e 31');return;}S.diaRecebe=d;save();renderDash();toast('Pronto: você recebe dia '+d);});}; function renderHoje2(){ var sc=document.getElementById('d-scroll');if(!sc)return; var el=document.getElementById('d-hoje');if(!el){el=document.createElement('div');el.id='d-hoje';sc.insertBefore(el,sc.firstChild);} if(!ehMesAtual()){el.innerHTML='';return;} var hoje=new Date();var y=hoje.getFullYear(),m=hoje.getMonth(); var diaR=diaRecebe(); if(!diaR){ el.innerHTML='<div class="hj"><div class="hj-tag">Quanto posso gastar hoje</div><div class="hj-q">Em que dia você recebe?</div><div class="hj-sub" style="margin-top:0;color:#fff;opacity:.85">Salário, mesada ou o que for. Com isso o Aprumo divide seu dinheiro certinho até o próximo pagamento.</div><div class="hj-row"><input class="hj-in" id="hj-dia" type="number" inputmode="numeric" min="1" max="31" placeholder="Dia (ex: 5)"><button class="hj-ok" onclick="salvarDiaRecebe()">Salvar</button></div><button class="hj-link" onclick="semDiaFixo()">Não tenho dia fixo</button></div>'; return; } var txs=txMes();var rec=0,gas=0,gHoje=0; txs.forEach(function(t){if(t.tipo==='receita')rec+=t.v;else{gas+=t.v;if(mesmoDia(new Date(t.ts),hoje))gHoje+=t.v;}}); var ini=saldoIni(); if(ini<=0&&rec<=0){ el.innerHTML='<div class="hj"><div class="hj-tag">Quanto posso gastar hoje</div><div class="hj-sub" style="margin-top:0;color:#fff;font-size:15px">Anote quanto você recebeu, ou informe quanto tinha no começo do mês, e o Aprumo calcula quanto dá pra gastar por dia.</div><div class="hj-chips"><button class="hj-chip" onclick="editarSaldoInicial()">Informar meu saldo</button><button class="hj-chip" onclick="ir(\'lancar\');setTipo(\'receita\')">Anotar o que recebi</button></div></div>'; return; } var prox,ult,temDia=diaR>0; if(temDia){ prox=hoje.getDate()<diaR?dataDia(y,m,diaR):dataDia(y,m+1,diaR); ult=hoje.getDate()>=diaR?dataDia(y,m,diaR):dataDia(y,m-1,diaR); }else{prox=new Date(y,m+1,1);} var h0=new Date(y,m,hoje.getDate()); var dias=Math.max(1,Math.round((prox-h0)/86400000)); var caiu=null; if(temDia){ var janIni=ult.getTime()-5*86400000; S.txs.filter(function(t){return t.tipo==='receita'&&t.ts>=janIni&&t.ts<=Date.now();}).forEach(function(t){if(!caiu||t.v>caiu.v)caiu=t;}); } var mk=mesKey(); var fixas=(S.recorrentes||[]).filter(function(r){ if(r.tipo!=='gasto')return false; var occ=r.ultimoMes!==mk?dataDia(y,m,r.dia):dataDia(y,m+1,r.dia); return occ<prox; }).reduce(function(a,r){return a+r.v;},0); var metas=(S.metas||[]).filter(function(x){return x.atual<x.total&&x.mensal>0;}).reduce(function(a,x){return a+x.mensal;},0); var base=ini+rec-(gas-gHoje)-fixas-metas; var porDia=base/dias; var partes=[];if(fixas>0)partes.push(brl(fixas)+' de contas fixas');if(metas>0)partes.push(brl(metas)+' para suas metas'); var desc=partes.length?' Já descontando '+partes.join(' e ')+'.':''; var chips=''; if(temDia){ chips+='<button class="hj-chip" onclick="mudarDiaRecebe()">'+(caiu?'💰 Caiu dia '+new Date(caiu.ts).getDate():'💰 Recebe dia '+diaR)+'</button>'; chips+='<span class="hj-chip">📅 Próximo: '+fmtD(prox)+' · faltam '+dias+(dias===1?' dia':' dias')+'</span>'; }else{ chips+='<span class="hj-chip">📅 Até o fim do mês · faltam '+dias+(dias===1?' dia':' dias')+'</span><button class="hj-chip" onclick="mudarDiaRecebe()">Informar dia que recebo</button>'; } var ate=temDia?'até o próximo pagamento':'até o fim do mês'; if(porDia<=0){ el.innerHTML='<div class="hj"><div class="hj-tag">Quanto posso gastar hoje</div><div class="hj-val">R$ 0</div><div class="hj-chips">'+chips+'</div><div class="hj-sub">O dinheiro '+ate+' já está todo comprometido. Hoje é dia de segurar.'+desc+'</div></div>'; return; } var resta=porDia-gHoje; if(resta<0){ el.innerHTML='<div class="hj"><div class="hj-tag">Quanto posso gastar hoje</div><div class="hj-val" style="color:#FCA5A5">'+brl(Math.abs(resta))+' acima</div><div class="hj-chips">'+chips+'</div><div class="hj-sub">Hoje você passou do limite de '+brl(porDia)+'. Sem culpa: amanhã o valor se ajusta sozinho.</div><div class="hj-bar"><div class="hj-fill" style="width:100%;background:#FCA5A5"></div></div></div>'; return; } var pct=Math.min(gHoje/porDia,1)*100; el.innerHTML='<div class="hj"><div class="hj-tag">Hoje você ainda pode gastar</div><div class="hj-val">'+brl(resta)+'</div><div class="hj-chips">'+chips+'</div><div class="hj-sub">São '+brl(porDia)+' por dia '+ate+'.'+desc+'</div><div class="hj-bar"><div class="hj-fill" style="width:'+pct+'%"></div></div></div>'; } var oDash=renderDash;renderDash=function(){oDash.apply(this,arguments);try{renderHoje2();}catch(e){}limpar(document.getElementById('d-alertas'));}; var dataLanc=null; function montarData(){ if(document.getElementById('l-data-box'))return; var desc=document.getElementById('l-desc');if(!desc)return; var box=document.createElement('div');box.id='l-data-box';box.style.marginBottom='20px'; box.innerHTML='<div class="label">Quando foi?</div><div class="dt-chips"><button type="button" class="dt-chip on" data-q="hoje">Hoje</button><button type="button" class="dt-chip" data-q="ontem">Ontem</button><button type="button" class="dt-chip" data-q="outro">Outro dia</button></div><input class="field" type="date" id="l-data" style="display:none">'; desc.parentNode.insertAdjacentElement('afterend',box); var inp=box.querySelector('#l-data'); function hojeISO(){var d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');} inp.max=hojeISO(); box.querySelectorAll('.dt-chip').forEach(function(b){b.onclick=function(){ box.querySelectorAll('.dt-chip').forEach(function(x){x.classList.remove('on');});b.classList.add('on'); var q=b.getAttribute('data-q'); if(q==='hoje'){dataLanc=null;inp.style.display='none';} else if(q==='ontem'){var d=new Date();d.setDate(d.getDate()-1);d.setHours(12,0,0,0);dataLanc=d;inp.style.display='none';} else{inp.style.display='block';inp.value=inp.value||hojeISO();var p=inp.value.split('-');dataLanc=new Date(+p[0],+p[1]-1,+p[2],12);} };}); inp.onchange=function(){if(!inp.value)return;var p=inp.value.split('-');dataLanc=new Date(+p[0],+p[1]-1,+p[2],12);}; } function resetData(){dataLanc=null;var box=document.getElementById('l-data-box');if(!box)return;box.querySelectorAll('.dt-chip').forEach(function(x){x.classList.toggle('on',x.getAttribute('data-q')==='hoje');});var i=document.getElementById('l-data');if(i){i.style.display='none';i.value='';}} var oSalvar=salvarTx;salvarTx=function(){ var tipo=tipoAtual;var n=S.txs.length;var escolhida=dataLanc; oSalvar.apply(this,arguments); if(S.txs.length>n&&escolhida&&!mesmoDia(escolhida,new Date())){ var tx=S.txs[S.txs.length-1];tx.ts=escolhida.getTime();tx.mk=mesKey(escolhida);save();renderDash(); } resetData(); if(S.txs.length>n&&tipo==='gasto'){setTimeout(function(){var v=document.querySelector('#d-hoje .hj-val');var t=document.querySelector('#d-hoje .hj-tag');if(v&&t&&t.textContent.indexOf('ainda')>-1)toast('Hoje ainda dá pra gastar '+v.textContent);},450);} }; var oIr=ir;ir=function(tela){oIr.apply(this,arguments);if(tela==='lancar')montarData();limpar(document.getElementById('tela-'+tela));}; window.addEventListener('load',function(){ tirarSoltos(); var e=document.getElementById('f-email');if(e&&e.value==='joao@email.com')e.value=''; limpar(document.getElementById('tela-onb')); montarData(); }); })(); </script><script>(function(){ enviarChat=async function(){ var field=document.getElementById('chat-field');var texto=field.value.trim();if(!texto)return; field.value='';addChatBubble('user',texto);chatHistory.push({role:'user',content:texto}); var btn=document.getElementById('chat-send-btn');btn.disabled=true; var load=addChatLoading(); try{ var d=new Date();var hoje=d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'); var resp=await fetch(BACKEND_URL+'/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:S.email,mensagens:chatHistory,hoje:hoje})}); var data=await resp.json();if(load.parentNode)load.remove(); if(resp.status===403){addChatBubble('ai','O chat é um recurso do Aprumo Plus. Confere se o e-mail no seu Perfil é o mesmo que você usou para assinar.');} else if(!resp.ok){addChatBubble('ai','Deu um erro para conversar agora. Tenta de novo em instantes.');} else{ var acoes=data.acoes||[];var txt=data.texto||''; if(!txt&&acoes.length)txt='Confere aí embaixo e confirma se estiver certo.'; if(txt){addChatBubble('ai',txt);chatHistory.push({role:'assistant',content:txt});} acoes.forEach(function(a){var x=a.dados||{}; if(a.tipo==='registrar_lancamento'&&x.valor>0){addChatCard(x);} else if(a.tipo==='criar_meta'&&x.total>0){addChatMetaCard(x);} else if(a.tipo==='definir_limite'&&x.categoria&&x.valor>0){addChatLimiteCard(x);} }); } }catch(e){if(load.parentNode)load.remove();addChatBubble('ai','Deu um erro para conversar agora. Tenta de novo em instantes.');} btn.disabled=false; }; })(); </script>
+<script>(function(){var css='.pix-ov{position:fixed;inset:0;z-index:300;background:var(--g900);display:none;flex-direction:column;overflow-y:auto;max-width:430px;margin:0 auto}.pix-ov.on{display:flex}.pix-top{display:flex;justify-content:space-between;align-items:center;padding:calc(20px + var(--sat)) 22px 8px}.pix-x{width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.1);color:var(--g300);display:flex;align-items:center;justify-content:center;font-size:16px}.pix-body{padding:6px 24px calc(28px + var(--sab));text-align:center}.pix-tag{display:inline-block;font-size:11px;font-weight:600;color:var(--g300);background:rgba(255,255,255,.1);padding:4px 10px;border-radius:99px;margin-bottom:12px}.pix-titulo{font-size:24px;font-weight:700;color:#fff;letter-spacing:-.5px;margin-bottom:4px}.pix-valor{font-size:15px;color:var(--g300);margin-bottom:22px}.pix-valor strong{color:#fff;font-weight:700}.pix-qr{background:#fff;border-radius:18px;padding:14px;width:220px;height:220px;margin:0 auto 18px;display:flex;align-items:center;justify-content:center}.pix-qr img{width:100%;height:100%}.pix-codigo{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:12px 14px;font-size:12px;color:var(--g300);word-break:break-all;text-align:left;max-height:62px;overflow:hidden;margin-bottom:12px;font-family:ui-monospace,monospace}.pix-copiar{width:100%;padding:16px;border-radius:13px;background:#fff;color:#0D0C0A;font-size:15px;font-weight:700;margin-bottom:22px}.pix-passos{text-align:left;display:flex;flex-direction:column;gap:12px;margin-bottom:24px}.pix-passo{display:flex;gap:12px;align-items:flex-start;font-size:14px;color:#fff;line-height:1.5}.pix-num{width:24px;height:24px;border-radius:50%;background:rgba(212,183,126,.18);color:var(--g300);font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}.pix-status{display:flex;align-items:center;justify-content:center;gap:10px;font-size:13px;color:var(--g300)}.pix-spin{width:16px;height:16px;border:2px solid rgba(212,183,126,.25);border-top-color:var(--g300);border-radius:50%;animation:pixspin 1s linear infinite}@keyframes pixspin{to{transform:rotate(360deg)}}.pix-ok{width:72px;height:72px;border-radius:50%;background:var(--g500);display:flex;align-items:center;justify-content:center;margin:40px auto 22px}';var st=document.createElement('style');st.textContent=css;document.head.appendChild(st);var ov=document.createElement('div');ov.className='pix-ov';document.body.appendChild(ov);var checar=null;function fechar(){ov.classList.remove('on');if(checar){clearInterval(checar);checar=null;}}function copiarManual(t){var ta=document.createElement('textarea');ta.value=t;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');}catch(e){}document.body.removeChild(ta);}function sucesso(){if(checar){clearInterval(checar);checar=null;}ov.querySelector('.pix-body').innerHTML='<div class="pix-ok"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div><div class="pix-titulo">Pagamento confirmado!</div><div class="pix-valor" style="margin-bottom:28px">Bem-vindo ao <strong>Avanzi Plus</strong>. Tudo já está liberado.</div><button class="pix-copiar" id="pix-comecar">Começar a usar</button>';document.getElementById('pix-comecar').onclick=function(){fechar();ir('dash');};}window.abrirTelaPix=function(data){var precos={mensal:'R$ 19,99',anual:'R$ 179,90'};var nomes={mensal:'Plano Mensal · 30 dias de Plus',anual:'Plano Anual · 12 meses de Plus'};var p=planoSelecionado;var codigo=data.qr_code||'';var img=data.qr_code_base64?'<div class="pix-qr"><img alt="QR Code Pix" src="data:image/png;base64,'+data.qr_code_base64+'"></div>':'';ov.innerHTML='<div class="pix-top"><div style="font-size:15px;font-weight:700;color:#fff">Avanzi</div><button class="pix-x" id="pix-fechar" aria-label="Fechar">✕</button></div><div class="pix-body"><div class="pix-tag">'+nomes[p]+'</div><div class="pix-titulo">Pague com Pix</div><div class="pix-valor">Total: <strong>'+precos[p]+'</strong></div>'+img+'<div class="pix-codigo" id="pix-codigo"></div><button class="pix-copiar" id="pix-copiar">Copiar código Pix</button><div class="pix-passos"><div class="pix-passo"><div class="pix-num">1</div><div>Copie o código ou escaneie o QR Code</div></div><div class="pix-passo"><div class="pix-num">2</div><div>No app do seu banco, escolha <strong>Pix Copia e Cola</strong> e cole o código</div></div><div class="pix-passo"><div class="pix-num">3</div><div>Confirme o pagamento. O Plus é liberado aqui na hora</div></div></div><div class="pix-status"><div class="pix-spin"></div><span>Aguardando pagamento...</span></div></div>';document.getElementById('pix-codigo').textContent=codigo;document.getElementById('pix-fechar').onclick=fechar;document.getElementById('pix-copiar').onclick=function(){var b=this;function ok(){b.textContent='Código copiado ✓';setTimeout(function(){b.textContent='Copiar código Pix';},2500);}if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(codigo).then(ok).catch(function(){copiarManual(codigo);ok();});}else{copiarManual(codigo);ok();}};ov.classList.add('on');ov.scrollTop=0;if(checar)clearInterval(checar);checar=setInterval(function(){if(S.premium){sucesso();}},1000);};})();</script><script>(function(){var css='.hoje{margin:0 16px 8px;background:linear-gradient(135deg,#2A2620 0%,#0D0C0A 100%);border-radius:18px;padding:18px 20px}.hoje-tag{font-size:12px;font-weight:600;color:#D4B77E;margin-bottom:6px}.hoje-val{font-size:calc(34px * var(--esc));font-weight:700;color:#fff;letter-spacing:-1px;line-height:1.1}.hoje-sub{font-size:calc(13px * var(--esc));color:#D4B77E;margin-top:8px;line-height:1.5}.hoje-bar{height:6px;background:rgba(255,255,255,.15);border-radius:99px;margin-top:12px;overflow:hidden}.hoje-fill{height:6px;border-radius:99px;background:#D4B77E}.hoje-btn{margin-top:12px;padding:10px 16px;background:rgba(255,255,255,.14);color:#fff;border-radius:10px;font-size:13px;font-weight:600;font-family:var(--f)}';var st=document.createElement('style');st.textContent=css;document.head.appendChild(st);function mesmoDia(a,b){return a.getFullYear()===b.getFullYear()&&a.getMonth()===b.getMonth()&&a.getDate()===b.getDate();}function renderHoje(){var sc=document.getElementById('d-scroll');if(!sc)return;var el=document.getElementById('d-hoje');if(!el){el=document.createElement('div');el.id='d-hoje';sc.insertBefore(el,sc.firstChild);}if(!ehMesAtual()){el.innerHTML='';return;}var txs=txMes();var hoje=new Date();var rec=0,gas=0,gHoje=0;txs.forEach(function(t){if(t.tipo==='receita')rec+=t.v;else{gas+=t.v;if(mesmoDia(new Date(t.ts),hoje))gHoje+=t.v;}});var ini=saldoIni();if(ini<=0&&rec<=0){el.innerHTML='<div class="hoje"><div class="hoje-tag">Quanto posso gastar hoje</div><div class="hoje-sub" style="margin-top:0;color:#fff;font-size:15px">Anote quanto você recebeu este mês, ou informe quanto tinha no começo do mês, e o Avanzi calcula quanto dá pra gastar por dia.</div><button class="hoje-btn" onclick="editarSaldoInicial()">Informar meu saldo</button></div>';return;}var mk=mesKey();var fixas=(S.recorrentes||[]).filter(function(r){return r.tipo==='gasto'&&r.ultimoMes!==mk;}).reduce(function(a,r){return a+r.v;},0);var metas=(S.metas||[]).filter(function(m){return m.atual<m.total&&m.mensal>0;}).reduce(function(a,m){return a+m.mensal;},0);var ultimo=new Date(hoje.getFullYear(),hoje.getMonth()+1,0).getDate();var dias=ultimo-hoje.getDate()+1;var base=ini+rec-(gas-gHoje)-fixas-metas;var porDia=base/dias;var partes=[];if(fixas>0)partes.push(brl(fixas)+' de contas fixas');if(metas>0)partes.push(brl(metas)+' para suas metas');var desc=partes.length?'Já descontando '+partes.join(' e ')+'.':'';if(porDia<=0){el.innerHTML='<div class="hoje"><div class="hoje-tag">Quanto posso gastar hoje</div><div class="hoje-val">R$ 0</div><div class="hoje-sub">Este mês o dinheiro já está todo comprometido. Hoje é dia de segurar. '+desc+'</div></div>';return;}var resta=porDia-gHoje;var pct=Math.min(gHoje/porDia,1)*100;if(resta<0){el.innerHTML='<div class="hoje"><div class="hoje-tag">Quanto posso gastar hoje</div><div class="hoje-val" style="color:#FCA5A5">'+brl(Math.abs(resta))+' acima</div><div class="hoje-sub">Hoje você passou do limite de '+brl(porDia)+'. Sem culpa: amanhã o valor se ajusta sozinho.</div><div class="hoje-bar"><div class="hoje-fill" style="width:100%;background:#FCA5A5"></div></div></div>';return;}el.innerHTML='<div class="hoje"><div class="hoje-tag">Hoje você ainda pode gastar</div><div class="hoje-val">'+brl(resta)+'</div><div class="hoje-sub">São '+brl(porDia)+' por dia até o fim do mês ('+dias+(dias===1?' dia':' dias')+'). '+desc+'</div><div class="hoje-bar"><div class="hoje-fill" style="width:'+pct+'%"></div></div></div>';}var orig=renderDash;renderDash=function(){orig.apply(this,arguments);try{renderHoje();}catch(e){}};})();</script><script>(function(){ var css='.hj{margin:0 16px 8px;background:linear-gradient(135deg,#2A2620 0%,#0D0C0A 100%);border-radius:18px;padding:18px 20px;color:#fff}' +'.hj-tag{font-size:12px;font-weight:600;color:#D4B77E;margin-bottom:6px}' +'.hj-val{font-size:calc(34px * var(--esc));font-weight:700;color:#fff;letter-spacing:-1px;line-height:1.1}' +'.hj-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}' +'.hj-chip{display:inline-flex;align-items:center;gap:5px;background:rgba(255,255,255,.12);color:#fff;font-size:12px;font-weight:600;padding:6px 10px;border-radius:99px;font-family:var(--f)}' +'.hj-sub{font-size:calc(13px * var(--esc));color:#D4B77E;margin-top:10px;line-height:1.5}' +'.hj-bar{height:6px;background:rgba(255,255,255,.15);border-radius:99px;margin-top:12px;overflow:hidden}' +'.hj-fill{height:6px;border-radius:99px;background:#D4B77E}' +'.hj-q{font-size:calc(19px * var(--esc));font-weight:700;color:#fff;margin-bottom:6px;letter-spacing:-.3px}' +'.hj-row{display:flex;gap:8px;margin-top:14px}' +'.hj-in{flex:1;min-width:0;padding:13px 14px;border-radius:11px;border:1.5px solid rgba(255,255,255,.2);background:rgba(255,255,255,.08);color:#fff;font-size:16px;font-family:var(--f);outline:none}' +'.hj-in::placeholder{color:rgba(255,255,255,.4)}' +'.hj-ok{padding:13px 18px;border-radius:11px;background:#fff;color:#0D0C0A;font-size:15px;font-weight:700;font-family:var(--f)}' +'.hj-link{margin-top:10px;font-size:12.5px;font-weight:600;color:#D4B77E;font-family:var(--f);text-decoration:underline}' +'.sm-link{display:inline-block;margin:0 0 14px;font-size:13px;font-weight:700;color:var(--g700);font-family:var(--f);text-decoration:underline;background:none}' +'.sm-inline{font-weight:700;color:var(--g700);text-decoration:underline;margin-left:6px;cursor:pointer}' +'.dt-chips{display:flex;gap:8px;margin-bottom:10px}' +'.dt-chip{flex:1;padding:12px 8px;border-radius:11px;background:var(--n50);border:1.5px solid transparent;font-size:calc(14px * var(--esc));font-weight:600;color:var(--n500);font-family:var(--f)}' +'.dt-chip.on{background:var(--g50);border-color:var(--g500);color:var(--g800)}'; var st=document.createElement('style');st.textContent=css;document.head.appendChild(st); var TROCAS=[['.','.'],[' · a partir de R$ 14,99/mês',' · a partir de R$ 14,99/mês'],['Ver planos','Ver planos'],['Disponível no Avanzi Plus.','Disponível no Avanzi Plus.']]; function limpar(root){ if(!root)return; var w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,null,false);var n; while((n=w.nextNode())){var t=n.nodeValue;if(t.indexOf('7 dias')===-1)continue;TROCAS.forEach(function(p){t=t.split(p[0]).join(p[1]);});n.nodeValue=t;} } function tirarSoltos(){ Array.prototype.slice.call(document.body.childNodes).forEach(function(n){if(n.nodeType===3&&n.nodeValue.trim())n.parentNode.removeChild(n);}); } try{TOUR_STEPS.forEach(function(s){TROCAS.forEach(function(p){s.text=s.text.split(p[0]).join(p[1]);});});}catch(e){} var SM={ limites:{t:'Limites por categoria',x:'Imagine ser avisado <strong>antes</strong> de passar do ponto: "o iFood do mês já chegou em 80%". Você escolhe quanto quer gastar em cada coisa e o Avanzi te dá um toque na hora certa.<br><br>Sem planilha e sem susto no fim do mês. É o jeito mais fácil de parar de se perguntar <strong>"pra onde foi meu dinheiro?"</strong>'}, metas:{t:'Metas ilimitadas',x:'Viagem, reserva de emergência, celular novo, aquele presente... A vida tem mais de um sonho ao mesmo tempo.<br><br>Com o Plus você acompanha <strong>todas as suas metas lado a lado</strong> e vê exatamente em que mês vai chegar em cada uma.'}, rec:{t:'Contas que se lançam sozinhas',x:'Aluguel, Netflix, academia, salário: você cadastra <strong>uma vez só</strong> e o Avanzi anota todo mês, no dia certo.<br><br>Menos coisa pra lembrar, e o seu "quanto posso gastar hoje" já desconta essas contas <strong>antes</strong> delas chegarem.'}, chat:{t:'Fale com o Avanzi',x:'Manda "gastei 32 no almoço" do jeito que você fala com um amigo e pronto, está anotado. Quer juntar 2 mil pra viagem? É só dizer.<br><br>Leva <strong>3 segundos</strong>. É o jeito mais fácil de manter o hábito, mesmo nos dias corridos.'} }; window.saibaMais=function(k){var s=SM[k];if(!s)return;confirmar({titulo:s.t,texto:s.x+'<br><br><span style="font-size:13px">Avanzi Plus a partir de <strong>R$ 14,99/mês</strong>. Pague no Pix, libera na hora.</span>',ok:'Quero o Avanzi Plus',cancelar:'Agora não'},function(){ir('premium');});}; function botaoSM(k){return '<button type="button" class="sm-link" onclick="saibaMais(\''+k+'\')">Saiba mais</button><br>';} function injetarSM(sel,k){var el=document.querySelector(sel);if(!el||el.querySelector('.sm-link'))return;var sub=el.querySelector('.locked-sub');if(!sub)return;sub.insertAdjacentHTML('afterend',botaoSM(k));} var oLim=renderLimites;renderLimites=function(){oLim.apply(this,arguments);if(!S.premium)injetarSM('#lim-lista .locked','limites');limpar(document.getElementById('lim-lista'));}; var oMet=renderMetas;renderMetas=function(){oMet.apply(this,arguments);if(!S.premium)injetarSM('#m-lista .locked','metas');}; var oChat=renderChatAccess;renderChatAccess=function(){oChat.apply(this,arguments);if(!S.premium)injetarSM('#chat-scroll .locked','chat');limpar(document.getElementById('chat-scroll'));}; var oRec=buildRecCtrl;buildRecCtrl=function(){oRec.apply(this,arguments);if(!S.premium){var sub=document.getElementById('l-rec-sub');if(sub&&!sub.querySelector('.sm-inline'))sub.insertAdjacentHTML('beforeend','<span class="sm-inline" onclick="event.stopPropagation();saibaMais(\'rec\')">Saiba mais</span>');}}; var oUp=addChatUpsellCard;addChatUpsellCard=function(){oUp.apply(this,arguments);var sc=document.getElementById('chat-scroll');limpar(sc);var cards=sc.querySelectorAll('.chat-upsell-sub');var c=cards[cards.length-1];if(c&&!c.querySelector('.sm-inline'))c.insertAdjacentHTML('beforeend','<span class="sm-inline" style="color:#fff" onclick="saibaMais(\'limites\')">Saiba mais</span>');}; function mesmoDia(a,b){return a.getFullYear()===b.getFullYear()&&a.getMonth()===b.getMonth()&&a.getDate()===b.getDate();} function dataDia(y,m,d){var u=new Date(y,m+1,0).getDate();return new Date(y,m,Math.min(d,u));} function fmtD(d){return d.getDate()+'/'+d.toLocaleDateString('pt-BR',{month:'short'}).replace('.','');} function diaRecebe(){if(S.diaRecebe)return S.diaRecebe;var rr=(S.recorrentes||[]).find(function(r){return r.tipo==='receita';});return rr?rr.dia:0;} window.salvarDiaRecebe=function(){var i=document.getElementById('hj-dia');var d=parseInt(i&&i.value,10);if(isNaN(d)||d<1||d>31){toast('Digite um dia entre 1 e 31');return;}S.diaRecebe=d;save();renderDash();toast('Pronto: você recebe dia '+d);}; window.semDiaFixo=function(){S.diaRecebe=-1;save();renderDash();toast('Beleza, vou dividir até o fim do mês');}; window.mudarDiaRecebe=function(){pedirTexto({titulo:'Em que dia do mês você recebe?',texto:'Salário, mesada ou sua principal entrada. O Avanzi divide o dinheiro até esse dia.',numero:true,placeholder:'Ex: 5',valor:S.diaRecebe>0?String(S.diaRecebe):''},function(v){var d=parseInt(v,10);if(isNaN(d)||d<1||d>31){toast('Digite um dia entre 1 e 31');return;}S.diaRecebe=d;save();renderDash();toast('Pronto: você recebe dia '+d);});}; function renderHoje2(){ var sc=document.getElementById('d-scroll');if(!sc)return; var el=document.getElementById('d-hoje');if(!el){el=document.createElement('div');el.id='d-hoje';sc.insertBefore(el,sc.firstChild);} if(!ehMesAtual()){el.innerHTML='';return;} var hoje=new Date();var y=hoje.getFullYear(),m=hoje.getMonth(); var diaR=diaRecebe(); if(!diaR){ el.innerHTML='<div class="hj"><div class="hj-tag">Quanto posso gastar hoje</div><div class="hj-q">Em que dia você recebe?</div><div class="hj-sub" style="margin-top:0;color:#fff;opacity:.85">Salário, mesada ou o que for. Com isso o Avanzi divide seu dinheiro certinho até o próximo pagamento.</div><div class="hj-row"><input class="hj-in" id="hj-dia" type="number" inputmode="numeric" min="1" max="31" placeholder="Dia (ex: 5)"><button class="hj-ok" onclick="salvarDiaRecebe()">Salvar</button></div><button class="hj-link" onclick="semDiaFixo()">Não tenho dia fixo</button></div>'; return; } var txs=txMes();var rec=0,gas=0,gHoje=0; txs.forEach(function(t){if(t.tipo==='receita')rec+=t.v;else{gas+=t.v;if(mesmoDia(new Date(t.ts),hoje))gHoje+=t.v;}}); var ini=saldoIni(); if(ini<=0&&rec<=0){ el.innerHTML='<div class="hj"><div class="hj-tag">Quanto posso gastar hoje</div><div class="hj-sub" style="margin-top:0;color:#fff;font-size:15px">Anote quanto você recebeu, ou informe quanto tinha no começo do mês, e o Avanzi calcula quanto dá pra gastar por dia.</div><div class="hj-chips"><button class="hj-chip" onclick="editarSaldoInicial()">Informar meu saldo</button><button class="hj-chip" onclick="ir(\'lancar\');setTipo(\'receita\')">Anotar o que recebi</button></div></div>'; return; } var prox,ult,temDia=diaR>0; if(temDia){ prox=hoje.getDate()<diaR?dataDia(y,m,diaR):dataDia(y,m+1,diaR); ult=hoje.getDate()>=diaR?dataDia(y,m,diaR):dataDia(y,m-1,diaR); }else{prox=new Date(y,m+1,1);} var h0=new Date(y,m,hoje.getDate()); var dias=Math.max(1,Math.round((prox-h0)/86400000)); var caiu=null; if(temDia){ var janIni=ult.getTime()-5*86400000; S.txs.filter(function(t){return t.tipo==='receita'&&t.ts>=janIni&&t.ts<=Date.now();}).forEach(function(t){if(!caiu||t.v>caiu.v)caiu=t;}); } var mk=mesKey(); var fixas=(S.recorrentes||[]).filter(function(r){ if(r.tipo!=='gasto')return false; var occ=r.ultimoMes!==mk?dataDia(y,m,r.dia):dataDia(y,m+1,r.dia); return occ<prox; }).reduce(function(a,r){return a+r.v;},0); var metas=(S.metas||[]).filter(function(x){return x.atual<x.total&&x.mensal>0;}).reduce(function(a,x){return a+x.mensal;},0); var base=ini+rec-(gas-gHoje)-fixas-metas; var porDia=base/dias; var partes=[];if(fixas>0)partes.push(brl(fixas)+' de contas fixas');if(metas>0)partes.push(brl(metas)+' para suas metas'); var desc=partes.length?' Já descontando '+partes.join(' e ')+'.':''; var chips=''; if(temDia){ chips+='<button class="hj-chip" onclick="mudarDiaRecebe()">'+(caiu?'💰 Caiu dia '+new Date(caiu.ts).getDate():'💰 Recebe dia '+diaR)+'</button>'; chips+='<span class="hj-chip">📅 Próximo: '+fmtD(prox)+' · faltam '+dias+(dias===1?' dia':' dias')+'</span>'; }else{ chips+='<span class="hj-chip">📅 Até o fim do mês · faltam '+dias+(dias===1?' dia':' dias')+'</span><button class="hj-chip" onclick="mudarDiaRecebe()">Informar dia que recebo</button>'; } var ate=temDia?'até o próximo pagamento':'até o fim do mês'; if(porDia<=0){ el.innerHTML='<div class="hj"><div class="hj-tag">Quanto posso gastar hoje</div><div class="hj-val">R$ 0</div><div class="hj-chips">'+chips+'</div><div class="hj-sub">O dinheiro '+ate+' já está todo comprometido. Hoje é dia de segurar.'+desc+'</div></div>'; return; } var resta=porDia-gHoje; if(resta<0){ el.innerHTML='<div class="hj"><div class="hj-tag">Quanto posso gastar hoje</div><div class="hj-val" style="color:#FCA5A5">'+brl(Math.abs(resta))+' acima</div><div class="hj-chips">'+chips+'</div><div class="hj-sub">Hoje você passou do limite de '+brl(porDia)+'. Sem culpa: amanhã o valor se ajusta sozinho.</div><div class="hj-bar"><div class="hj-fill" style="width:100%;background:#FCA5A5"></div></div></div>'; return; } var pct=Math.min(gHoje/porDia,1)*100; el.innerHTML='<div class="hj"><div class="hj-tag">Hoje você ainda pode gastar</div><div class="hj-val">'+brl(resta)+'</div><div class="hj-chips">'+chips+'</div><div class="hj-sub">São '+brl(porDia)+' por dia '+ate+'.'+desc+'</div><div class="hj-bar"><div class="hj-fill" style="width:'+pct+'%"></div></div></div>'; } var oDash=renderDash;renderDash=function(){oDash.apply(this,arguments);try{renderHoje2();}catch(e){}limpar(document.getElementById('d-alertas'));}; var dataLanc=null; function montarData(){ if(document.getElementById('l-data-box'))return; var desc=document.getElementById('l-desc');if(!desc)return; var box=document.createElement('div');box.id='l-data-box';box.style.marginBottom='20px'; box.innerHTML='<div class="label">Quando foi?</div><div class="dt-chips"><button type="button" class="dt-chip on" data-q="hoje">Hoje</button><button type="button" class="dt-chip" data-q="ontem">Ontem</button><button type="button" class="dt-chip" data-q="outro">Outro dia</button></div><input class="field" type="date" id="l-data" style="display:none">'; desc.parentNode.insertAdjacentElement('afterend',box); var inp=box.querySelector('#l-data'); function hojeISO(){var d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');} inp.max=hojeISO(); box.querySelectorAll('.dt-chip').forEach(function(b){b.onclick=function(){ box.querySelectorAll('.dt-chip').forEach(function(x){x.classList.remove('on');});b.classList.add('on'); var q=b.getAttribute('data-q'); if(q==='hoje'){dataLanc=null;inp.style.display='none';} else if(q==='ontem'){var d=new Date();d.setDate(d.getDate()-1);d.setHours(12,0,0,0);dataLanc=d;inp.style.display='none';} else{inp.style.display='block';inp.value=inp.value||hojeISO();var p=inp.value.split('-');dataLanc=new Date(+p[0],+p[1]-1,+p[2],12);} };}); inp.onchange=function(){if(!inp.value)return;var p=inp.value.split('-');dataLanc=new Date(+p[0],+p[1]-1,+p[2],12);}; } function resetData(){dataLanc=null;var box=document.getElementById('l-data-box');if(!box)return;box.querySelectorAll('.dt-chip').forEach(function(x){x.classList.toggle('on',x.getAttribute('data-q')==='hoje');});var i=document.getElementById('l-data');if(i){i.style.display='none';i.value='';}} var oSalvar=salvarTx;salvarTx=function(){ var tipo=tipoAtual;var n=S.txs.length;var escolhida=dataLanc; oSalvar.apply(this,arguments); if(S.txs.length>n&&escolhida&&!mesmoDia(escolhida,new Date())){ var tx=S.txs[S.txs.length-1];tx.ts=escolhida.getTime();tx.mk=mesKey(escolhida);save();renderDash(); } resetData(); if(S.txs.length>n&&tipo==='gasto'){setTimeout(function(){var v=document.querySelector('#d-hoje .hj-val');var t=document.querySelector('#d-hoje .hj-tag');if(v&&t&&t.textContent.indexOf('ainda')>-1)toast('Hoje ainda dá pra gastar '+v.textContent);},450);} }; var oIr=ir;ir=function(tela){oIr.apply(this,arguments);if(tela==='lancar')montarData();limpar(document.getElementById('tela-'+tela));}; window.addEventListener('load',function(){ tirarSoltos(); var e=document.getElementById('f-email');if(e&&e.value==='joao@email.com')e.value=''; limpar(document.getElementById('tela-onb')); montarData(); }); })(); </script><script>(function(){ enviarChat=async function(){ var field=document.getElementById('chat-field');var texto=field.value.trim();if(!texto)return; field.value='';addChatBubble('user',texto);chatHistory.push({role:'user',content:texto}); var btn=document.getElementById('chat-send-btn');btn.disabled=true; var load=addChatLoading(); try{ var d=new Date();var hoje=d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'); var resp=await fetch(BACKEND_URL+'/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:S.email,mensagens:chatHistory,hoje:hoje})}); var data=await resp.json();if(load.parentNode)load.remove(); if(resp.status===403){addChatBubble('ai','O chat é um recurso do Avanzi Plus. Confere se o e-mail no seu Perfil é o mesmo que você usou para assinar.');} else if(!resp.ok){addChatBubble('ai','Deu um erro para conversar agora. Tenta de novo em instantes.');} else{ var acoes=data.acoes||[];var txt=data.texto||''; if(!txt&&acoes.length)txt='Confere aí embaixo e confirma se estiver certo.'; if(txt){addChatBubble('ai',txt);chatHistory.push({role:'assistant',content:txt});} acoes.forEach(function(a){var x=a.dados||{}; if(a.tipo==='registrar_lancamento'&&x.valor>0){addChatCard(x);} else if(a.tipo==='criar_meta'&&x.total>0){addChatMetaCard(x);} else if(a.tipo==='definir_limite'&&x.categoria&&x.valor>0){addChatLimiteCard(x);} }); } }catch(e){if(load.parentNode)load.remove();addChatBubble('ai','Deu um erro para conversar agora. Tenta de novo em instantes.');} btn.disabled=false; }; })(); </script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4"></script>
 <script>
 // ─── LOGIN + DADOS NA NUVEM (Supabase) ───────────
@@ -3734,7 +3740,7 @@ window.addEventListener('load',()=>{
 
   try { if (window.supabase && window.supabase.createClient) sb = window.supabase.createClient(SB_URL, SB_KEY, { auth: { persistSession: true, autoRefreshToken: true } }); } catch (e) { sb = null; }
 
-  // todo pedido ao backend do Aprumo vai com o "token" do login, para o servidor saber quem é
+  // todo pedido ao backend do Avanzi vai com o "token" do login, para o servidor saber quem é
   var fetchOriginal = window.fetch.bind(window);
   window.fetch = async function(input, init){
     try {
@@ -3820,7 +3826,7 @@ window.addEventListener('load',()=>{
     var n = (S.usuario || '').trim();
     if (!n || n === 'João' || n === 'Você') {
       setTimeout(function(){
-        pedirTexto({ titulo: 'Como você quer ser chamado?', texto: 'É assim que o Aprumo vai falar com você.', placeholder: 'Seu nome', max: 20, ok: 'Continuar', cancelar: 'Agora não' }, function(v){
+        pedirTexto({ titulo: 'Como você quer ser chamado?', texto: 'É assim que o Avanzi vai falar com você.', placeholder: 'Seu nome', max: 20, ok: 'Continuar', cancelar: 'Agora não' }, function(v){
           var nome = (v || '').trim(); if (!nome) return;
           S.usuario = nome.charAt(0).toUpperCase() + nome.slice(1); save(); try { renderDash(); } catch (e) {}
         });
@@ -3866,7 +3872,7 @@ window.addEventListener('load',()=>{
   function montarLogin(){
     var el = document.getElementById('tela-login'); if (!el) return;
     el.innerHTML =
-      '<div class="login-wordmark">Aprumo</div>' +
+      '<div class="login-wordmark">Avanz<span class="wm-i">ı</span></div>' +
       '<div class="login-tagline">Entre com seu e-mail. Seus dados ficam guardados na sua conta, mesmo se trocar de celular.</div>' +
       '<div id="lg-passo1">' +
         '<input class="field" type="email" id="lg-email" placeholder="seuemail@exemplo.com" autocomplete="email">' +
@@ -3941,7 +3947,7 @@ window.addEventListener('load',()=>{
     '.cb-btn{padding:8px 14px;border-radius:99px;font-size:13px;font-weight:600;font-family:var(--f);background:var(--n100);color:var(--n700)}' +
     '.cb-btn.forte{background:var(--g100);color:var(--g800)}' +
     '.cb-sub{font-size:13px;color:var(--n400);margin-top:6px}' +
-    'body.dark .cb-btn{background:#22322C;color:var(--n700)} body.dark .cb-btn.forte{background:#123D33;color:var(--g300)}';
+    'body.dark .cb-btn{background:#282420;color:var(--n700)} body.dark .cb-btn.forte{background:#2A2418;color:var(--g300)}';
   var st = document.createElement('style'); st.textContent = css; document.head.appendChild(st);
 
   function semAcento(s){ return String(s || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, ''); }
@@ -4071,7 +4077,7 @@ window.addEventListener('load',()=>{
       var d = new Date(); var hoje = d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
       var resp = await fetch(BACKEND_URL + '/api/chat', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ mensagens: chatHistory, hoje: hoje }) });
       var data = await resp.json(); if (load.parentNode) load.remove();
-      if (resp.status === 403) addChatBubble('ai', 'O chat é um recurso do Aprumo Plus.');
+      if (resp.status === 403) addChatBubble('ai', 'O chat é um recurso do Avanzi Plus.');
       else if (resp.status === 401) addChatBubble('ai', 'Sua sessão expirou. Saia e entre de novo na sua conta.');
       else if (!resp.ok) addChatBubble('ai', 'Deu um erro para conversar agora. Tenta de novo em instantes.');
       else {
@@ -4109,7 +4115,7 @@ window.addEventListener('load',()=>{
     '.lt-bar{height:5px;background:var(--n100);border-radius:99px;margin-top:9px;overflow:hidden;max-width:260px}' +
     '.lt-fill{height:5px;border-radius:99px;background:var(--g500)}' +
     '.lt-badge{display:inline-block;margin-top:8px;font-size:12px;font-weight:700;color:var(--g800);background:var(--g100);padding:5px 10px;border-radius:99px}' +
-    'body.dark .lt{background:#16221E;border-color:#26332E} body.dark .lt-dot{background:#16221E} body.dark .lt-dot.ok{background:var(--g500)} body.dark .lt-badge{background:#123D33;color:var(--g300)}';
+    'body.dark .lt{background:#191714;border-color:#2E2A25} body.dark .lt-dot{background:#191714} body.dark .lt-dot.ok{background:var(--g500)} body.dark .lt-badge{background:#2A2418;color:var(--g300)}';
   var st = document.createElement('style'); st.textContent = css; document.head.appendChild(st);
 
   function mesesAte(m){ if (m.atual >= m.total) return 0; if (!(m.mensal > 0)) return null; return Math.ceil((m.total - m.atual) / m.mensal); }
@@ -4169,19 +4175,19 @@ window.addEventListener('load',()=>{
 (function(){
   var css = '.wpp{margin:0 16px 8px;background:var(--white);border:1px solid var(--n100);border-radius:16px;padding:14px 16px;display:flex;align-items:center;gap:14px;cursor:pointer;width:calc(100% - 32px);text-align:left;font-family:var(--f)}' +
     '.wpp:active{background:var(--n50)}' +
-    '.wpp-ic{width:44px;height:44px;border-radius:14px;background:#1D9E75;display:flex;align-items:center;justify-content:center;flex-shrink:0}' +
+    '.wpp-ic{width:44px;height:44px;border-radius:14px;background:#B8924A;display:flex;align-items:center;justify-content:center;flex-shrink:0}' +
     '.wpp-t{font-size:calc(15px * var(--esc));font-weight:700;color:var(--n900);display:flex;align-items:center;gap:8px}' +
     '.wpp-tag{white-space:nowrap;flex-shrink:0;font-size:10px;font-weight:800;letter-spacing:.5px;color:var(--g800);background:var(--g100);padding:3px 8px;border-radius:99px}' +
     '.wpp-s{font-size:calc(13px * var(--esc));color:var(--n400);margin-top:2px;line-height:1.4}' +
-    'body.dark .wpp{background:#16221E;border-color:#26332E} body.dark .wpp-tag{background:#123D33;color:var(--g300)}';
+    'body.dark .wpp{background:#191714;border-color:#2E2A25} body.dark .wpp-tag{background:#2A2418;color:var(--g300)}';
   var st = document.createElement('style'); st.textContent = css; document.head.appendChild(st);
 
   var ICONE = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12a8 8 0 1 1 3.4 6.5L4 20l1.3-3.5A8 8 0 0 1 4 12z"/><path d="M9 11h6M9 14h4"/></svg>';
 
   window.abrirWhatsEmBreve = function(){
     confirmar({
-      titulo: 'Aprumo no WhatsApp: em breve!',
-      texto: 'Logo você vai poder mandar <strong>"gastei 25 no ifood"</strong> ou até um <strong>áudio</strong> direto no WhatsApp, e o Aprumo anota tudo sozinho, sem nem abrir o app.<br><br>Quer ser avisado quando chegar?',
+      titulo: 'Avanzi no WhatsApp: em breve!',
+      texto: 'Logo você vai poder mandar <strong>"gastei 25 no ifood"</strong> ou até um <strong>áudio</strong> direto no WhatsApp, e o Avanzi anota tudo sozinho, sem nem abrir o app.<br><br>Quer ser avisado quando chegar?',
       ok: S.querWhatsapp ? 'Já estou na lista ✓' : 'Quero ser avisado',
       cancelar: 'Fechar'
     }, function(){
@@ -4210,22 +4216,22 @@ window.addEventListener('load',()=>{
 <script>
 // ─── TUTORIAL DE INSTALAÇÃO (10 segundos) ───────
 (function(){
-  var css = '.ins-ov{position:fixed;inset:0;z-index:400;background:rgba(5,15,12,.55);display:none;align-items:flex-end;justify-content:center;backdrop-filter:blur(2px)}' +
+  var css = '.ins-ov{position:fixed;inset:0;z-index:400;background:rgba(10,9,8,.55);display:none;align-items:flex-end;justify-content:center;backdrop-filter:blur(2px)}' +
     '.ins-ov.on{display:flex}' +
     '.ins{width:100%;max-width:430px;background:var(--white);border-radius:26px 26px 0 0;padding:26px 24px calc(22px + var(--sab));animation:insUp .35s cubic-bezier(.2,.8,.2,1)}' +
     '@keyframes insUp{from{transform:translateY(40px);opacity:0}to{transform:none;opacity:1}}' +
     '.ins-top{display:flex;align-items:center;gap:14px;margin-bottom:16px}' +
-    '.ins-ic{width:56px;height:56px;border-radius:15px;background:#052E22;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;box-shadow:0 10px 24px rgba(5,46,34,.3);flex-shrink:0}' +
-    '.ins-ic b{color:#fff;font-size:30px;line-height:1;font-weight:800}.ins-ic i{width:20px;height:4px;border-radius:2px;background:#5DCAA5}' +
+    '.ins-ic{width:56px;height:56px;border-radius:15px;background:#0D0C0A;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;box-shadow:0 10px 24px rgba(13,12,10,.3);flex-shrink:0}' +
+    '.ins-ic b{color:#fff;font-size:30px;line-height:1;font-weight:800}.ins-ic i{width:20px;height:4px;border-radius:2px;background:#D4B77E}' +
     '.ins-t{font-size:calc(19px * var(--esc));font-weight:700;color:var(--n900);letter-spacing:-.3px;line-height:1.25}' +
     '.ins-s{font-size:calc(14px * var(--esc));color:var(--n400);margin-top:3px}' +
     '.ins-passos{display:flex;flex-direction:column;gap:12px;margin:6px 0 20px}' +
     '.ins-p{display:flex;align-items:center;gap:14px;background:var(--n50);border-radius:14px;padding:13px 14px;font-size:calc(15px * var(--esc));color:var(--n700);line-height:1.4}' +
     '.ins-n{width:28px;height:28px;border-radius:50%;background:var(--g800);color:#fff;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}' +
     '.ins-p svg{vertical-align:-5px;margin:0 2px}' +
-    '.ins-seta{position:fixed;left:50%;bottom:10px;transform:translateX(-50%);z-index:401;display:none;color:#0D6B56;animation:insB 1s ease-in-out infinite}' +
+    '.ins-seta{position:fixed;left:50%;bottom:10px;transform:translateX(-50%);z-index:401;display:none;color:#2A2620;animation:insB 1s ease-in-out infinite}' +
     '@keyframes insB{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,8px)}}' +
-    'body.dark .ins-p{background:#101A16}';
+    'body.dark .ins-p{background:#141210}';
   var st = document.createElement('style'); st.textContent = css; document.head.appendChild(st);
 
   var promptInstalar = null;
@@ -4266,7 +4272,7 @@ window.addEventListener('load',()=>{
       ];
     }
     ov.innerHTML = '<div class="ins">' +
-      '<div class="ins-top"><div class="ins-ic"><b>A</b><i></i></div><div><div class="ins-t">Deixe o Aprumo na sua tela</div><div class="ins-s">Leva 10 segundos. Ele abre como um app, em tela cheia.</div></div></div>' +
+      '<div class="ins-top"><div class="ins-ic"><b>A</b><i></i></div><div><div class="ins-t">Deixe o Avanzi na sua tela</div><div class="ins-s">Leva 10 segundos. Ele abre como um app, em tela cheia.</div></div></div>' +
       (passos ? '<div class="ins-passos">' + passos.map(function(p, i){ return '<div class="ins-p"><div class="ins-n">' + (i + 1) + '</div><div>' + p + '</div></div>'; }).join('') + '</div>' : '<div style="height:8px"></div>') +
       (botao || '<button class="btn-solid" id="ins-ok">Entendi</button>') +
       '<button class="btn-ghost conf-cancel" id="ins-no">Agora não</button></div>';
@@ -4275,7 +4281,7 @@ window.addEventListener('load',()=>{
     var ok = document.getElementById('ins-ok'); if (ok) ok.onclick = fechar;
     var ja = document.getElementById('ins-ja');
     if (ja) ja.onclick = async function(){
-      try { promptInstalar.prompt(); var r = await promptInstalar.userChoice; promptInstalar = null; if (r && r.outcome === 'accepted') toast('Aprumo instalado!'); } catch (e) {}
+      try { promptInstalar.prompt(); var r = await promptInstalar.userChoice; promptInstalar = null; if (r && r.outcome === 'accepted') toast('Avanzi instalado!'); } catch (e) {}
       fechar();
     };
     document.getElementById('ins-no').onclick = fechar;
@@ -4347,7 +4353,7 @@ window.addEventListener('load',()=>{
   };
   window.pularRenda = function(){ S.renda = 0; save(); renderDash(); };
   window.editarRenda = function(){
-    pedirTexto({ titulo: 'Quanto você ganha por mês?', texto: 'Salário, mesada, bolsa ou o que for. No dia do pagamento, o Aprumo anota sozinho para você.', placeholder: 'Ex: 2.500', valor: S.renda > 0 ? String(S.renda).replace('.', ',') : '', ok: 'Salvar', cancelar: 'Cancelar' }, function(val){
+    pedirTexto({ titulo: 'Quanto você ganha por mês?', texto: 'Salário, mesada, bolsa ou o que for. No dia do pagamento, o Avanzi anota sozinho para você.', placeholder: 'Ex: 2.500', valor: S.renda > 0 ? String(S.renda).replace('.', ',') : '', ok: 'Salvar', cancelar: 'Cancelar' }, function(val){
       var v = lerValor(val);
       if (!(v > 0)) { S.renda = 0; save(); renderDash(); toast('Renda removida'); return; }
       S.renda = v; save(); lancarSalario(); renderDash(); toast('Renda atualizada: ' + brl(v));
@@ -4359,7 +4365,7 @@ window.addEventListener('load',()=>{
     if (!dRec()) return; // primeiro pergunta o dia
     if (S.renda === undefined) {
       el.innerHTML = '<div class="hj"><div class="hj-tag">Quanto posso gastar hoje</div><div class="hj-q">Quanto você ganha por mês?</div>' +
-        '<div class="hj-sub" style="margin-top:0;color:#fff;opacity:.85">Salário, mesada, bolsa ou o que for. No dia do pagamento, o Aprumo anota sozinho e já calcula quanto dá pra gastar por dia.</div>' +
+        '<div class="hj-sub" style="margin-top:0;color:#fff;opacity:.85">Salário, mesada, bolsa ou o que for. No dia do pagamento, o Avanzi anota sozinho e já calcula quanto dá pra gastar por dia.</div>' +
         '<div class="hj-row"><input class="hj-in" id="hj-renda" inputmode="decimal" placeholder="R$ 2.500"><button class="hj-ok" onclick="salvarRenda()">Salvar</button></div>' +
         '<button class="hj-link" onclick="pularRenda()">Prefiro não dizer</button></div>';
       return;
@@ -4394,7 +4400,7 @@ window.addEventListener('load',()=>{
     '.lb-b{display:flex;gap:8px;margin-top:10px}' +
     '.lb-ok{background:var(--g800);color:#fff;font-family:var(--f);font-size:13px;font-weight:700;padding:9px 16px;border-radius:99px}' +
     '.lb-no{background:var(--n100);color:var(--n700);font-family:var(--f);font-size:13px;font-weight:600;padding:9px 14px;border-radius:99px}' +
-    'body.dark .lb{background:#16221E;border-color:#26332E} body.dark .lb-ic{background:#123D33} body.dark .lb-no{background:#22322C}';
+    'body.dark .lb{background:#191714;border-color:#2E2A25} body.dark .lb-ic{background:#2A2418} body.dark .lb-no{background:#282420}';
   var st = document.createElement('style'); st.textContent = css; document.head.appendChild(st);
 
   function suportaPush(){ return 'serviceWorker' in navigator && 'PushManager' in window && 'Notification' in window; }
@@ -4404,16 +4410,16 @@ window.addEventListener('load',()=>{
   function ehIOS(){ var ua = navigator.userAgent || ''; return /iPad|iPhone|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); }
   window.ativarLembrete = async function(){
     if (ehIOS() && !(typeof ehStandalone === 'function' && ehStandalone())) {
-      toast('No iPhone, o lembrete só funciona com o Aprumo instalado na tela');
+      toast('No iPhone, o lembrete só funciona com o Avanzi instalado na tela');
       try { mostrarTutorialInstalar(); } catch (e) {}
       return;
     }
-    if (!suportaPush()) { toast('Este navegador não aceita notificações. Instale o Aprumo na tela'); try { mostrarTutorialInstalar(); } catch (e) {} return; }
+    if (!suportaPush()) { toast('Este navegador não aceita notificações. Instale o Avanzi na tela'); try { mostrarTutorialInstalar(); } catch (e) {} return; }
     var etapa = 'permissão';
     try {
       var perm = await Notification.requestPermission();
       if (perm !== 'granted') {
-        toast(ehIOS() ? 'Permita as notificações em Ajustes → Notificações → Aprumo' : 'Permita as notificações do Aprumo nas configurações do navegador');
+        toast(ehIOS() ? 'Permita as notificações em Ajustes → Notificações → Avanzi' : 'Permita as notificações do Avanzi nas configurações do navegador');
         return;
       }
       etapa = 'aparelho';
@@ -4429,7 +4435,7 @@ window.addEventListener('load',()=>{
       toast('Pronto! Todo dia às 21h eu te dou um toque');
     } catch (e) {
       console.error('Lembrete:', etapa, e);
-      toast(etapa === 'aparelho' ? 'O celular não deixou ativar. Tente reinstalar o Aprumo na tela' : 'Não consegui ativar agora (' + etapa + '). Tenta de novo');
+      toast(etapa === 'aparelho' ? 'O celular não deixou ativar. Tente reinstalar o Avanzi na tela' : 'Não consegui ativar agora (' + etapa + '). Tenta de novo');
     }
   };
   window.desativarLembrete = async function(){
@@ -4479,7 +4485,7 @@ window.addEventListener('load',()=>{
       if (alvo && !document.getElementById('pf-inst') && !(typeof ehStandalone === 'function' && ehStandalone())) {
         var bi = document.createElement('button'); bi.type = 'button'; bi.className = 'pf-row'; bi.id = 'pf-inst';
         bi.onclick = function(){ try { mostrarTutorialInstalar(); } catch (e) {} };
-        bi.innerHTML = '<div class="pf-row-icon">📲</div><div class="pf-row-body"><div class="pf-row-title">Instalar o Aprumo na tela</div><div class="pf-row-sub">Abre como app, com ícone e lembretes</div></div>';
+        bi.innerHTML = '<div class="pf-row-icon">📲</div><div class="pf-row-body"><div class="pf-row-title">Instalar o Avanzi na tela</div><div class="pf-row-sub">Abre como app, com ícone e lembretes</div></div>';
         alvo.parentNode.insertBefore(bi, alvo);
       }
       if (!suportaPush() && !ehIOS()) return;
