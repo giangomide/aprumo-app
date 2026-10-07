@@ -263,7 +263,7 @@ body.dark .nav-btn.on { color: var(--g500); }
   opacity: 0;
   transition: all .22s ease;
   pointer-events: none;
-  white-space: nowrap;
+  white-space: normal; max-width: calc(100vw - 32px); text-align: center; line-height: 1.4; border-radius: 18px;
   z-index: 999;
 }
 .toast.on { opacity: 1; transform: translateX(-50%) translateY(0); }
@@ -1883,7 +1883,7 @@ function saudacao(){ const h=new Date().getHours(); return h<12?'Bom dia':h<18?'
 function toast(msg){
   const el=$('toast');
   el.textContent=msg; el.classList.add('on');
-  setTimeout(()=>el.classList.remove('on'),2400);
+  setTimeout(()=>el.classList.remove('on'),Math.max(2400,msg.length*70));
 }
 
 // ─── NAVEGAÇÃO ───────────────────────────────────
@@ -4423,7 +4423,7 @@ window.addEventListener('load',()=>{
     try {
       var perm = await Notification.requestPermission();
       if (perm !== 'granted') {
-        toast(ehIOS() ? 'Permita as notificações em Ajustes → Notificações → Avanzi' : 'Permita as notificações do Avanzi nas configurações do navegador');
+        toast(ehIOS() ? 'Notificações bloqueadas. Ative em Ajustes do iPhone → Notificações → Avanzi' : 'Permita as notificações do Avanzi nas configurações do navegador');
         return;
       }
       etapa = 'aparelho';
