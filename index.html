@@ -2585,6 +2585,11 @@ function renderPerfil(){
     <div class="pf-section">
       <div class="pf-section-label">Suporte</div>
       <div class="pf-group">
+        <button type="button" class="pf-row" onclick="abrirFeedback()">
+          <div class="pf-row-icon">💬</div>
+          <div class="pf-row-body"><div class="pf-row-title">O que te incomoda no Avanzi?</div><div class="pf-row-sub">Conta pra gente. Leva 30 segundos</div></div>
+          ${IC.chev}
+        </button>
         <button type="button" class="pf-row" onclick="window.location.href='mailto:appavanzi@gmail.com?subject=Ajuda%20com%20o%20Avanzi'">
           <div class="pf-row-icon">${IC.help}</div>
           <div class="pf-row-body"><div class="pf-row-title">Fale com a gente</div><div class="pf-row-sub">Dúvidas, sugestões ou problemas</div></div>
@@ -3819,12 +3824,54 @@ window.addEventListener('load',()=>{
     } catch (e) {}
   }
 
+  // lançamentos que chegaram pelo WhatsApp: entram na lista e saem da caixa de entrada
+  var puxandoWpp = false;
+  async function puxarWhatsapp(){
+    if (!sb || !uid || puxandoWpp) return;
+    puxandoWpp = true;
+    try {
+      var r = await sb.from('whatsapp_inbox').select('id, tx').eq('user_id', uid);
+      if (r.error || !r.data || !r.data.length) return;
+      S.txs = S.txs || [];
+      var ids = {}; S.txs.forEach(function(t){ ids[t.id] = 1; });
+      var novos = 0;
+      r.data.forEach(function(row){ if (row.tx && !ids[row.tx.id]) { S.txs.push(row.tx); ids[row.tx.id] = 1; novos++; } });
+      S._rev = Date.now(); S._uid = uid; salvarLocal();
+      var up = await sb.from('user_data').upsert({ user_id: uid, data: S, updated_at: new Date().toISOString() });
+      if (up.error) return; // só tira da caixa depois de salvar na conta
+      await sb.from('whatsapp_inbox').delete().in('id', r.data.map(function(x){ return x.id; }));
+      S.wppLigado = true; salvarLocal();
+      if (novos) {
+        var t = telaAtual(); if (t !== 'login' && t !== 'onb') ir(t);
+        toast(novos === 1 ? '1 lançamento chegou pelo WhatsApp ✓' : novos + ' lançamentos chegaram pelo WhatsApp ✓');
+      }
+    } catch (e) {} finally { puxandoWpp = false; }
+  }
+  async function conferirWhatsapp(){
+    if (!sb || !uid) return;
+    try {
+      var r = await sb.from('whatsapp_links').select('phone').eq('user_id', uid).maybeSingle();
+      if (r.error) return;
+      var lig = !!r.data;
+      if (lig !== !!S.wppLigado) { S.wppLigado = lig; salvarLocal(); try { renderDash(); } catch (e) {} }
+    } catch (e) {}
+  }
+  window.avanziWpp = { puxar: puxarWhatsapp, conferir: conferirWhatsapp, logado: function(){ return !!uid; } };
+  window.avanziEnviarFeedback = async function(tipo, texto, tela){
+    if (!sb || !uid) return false;
+    try {
+      var r = await sb.from('feedback').insert({ user_id: uid, email: emailConta, tipo: tipo, texto: texto, tela: tela || '', plus: !!S.premium });
+      return !r.error;
+    } catch (e) { return false; }
+  };
+
   async function depoisDoLogin(session, primeiraVez){
     uid = session.user.id; emailConta = session.user.email;
     if (S._uid && S._uid !== uid) { var tema = S.tema; S = padrao(); S.tema = tema; }
     S.email = emailConta; S.onbFeito = true; salvarLocal();
     if (telaAtual() === 'login') ir('dash');
     await puxar(primeiraVez || S._uid !== uid);
+    await puxarWhatsapp(); conferirWhatsapp();
     try { verificarStatusPremium(true); } catch (e) {}
     if (telaAtual() === 'login') ir('dash');
     var n = (S.usuario || '').trim();
@@ -3929,7 +3976,7 @@ window.addEventListener('load',()=>{
     });
   };
 
-  document.addEventListener('visibilitychange', function(){ if (document.visibilityState === 'visible') puxar(false); });
+  document.addEventListener('visibilitychange', function(){ if (document.visibilityState === 'visible') puxar(false).then(puxarWhatsapp).then(conferirWhatsapp); });
 
   window.addEventListener('load', async function(){
     montarLogin();
@@ -4175,7 +4222,7 @@ window.addEventListener('load',()=>{
 
 </script>
 <script>
-// ─── WHATSAPP: EM BREVE ─────────────────────────
+// ─── WHATSAPP ───────────────────────────────────
 (function(){
   var css = '.wpp{margin:0 16px 8px;background:var(--white);border:1px solid var(--n100);border-radius:16px;padding:14px 16px;display:flex;align-items:center;gap:14px;cursor:pointer;width:calc(100% - 32px);text-align:left;font-family:var(--f)}' +
     '.wpp:active{background:var(--n50)}' +
@@ -4199,18 +4246,70 @@ window.addEventListener('load',()=>{
     });
   };
 
+  // o WhatsApp já está no ar? (pergunta uma vez por abertura do app)
+  var disp = null, conversa = '', perguntando = false;
+  function checarDisponivel(){
+    if (disp !== null || perguntando) return;
+    perguntando = true;
+    fetch(BACKEND_URL + '/api/whatsapp-token').then(function(r){ return r.json(); }).then(function(d){
+      disp = !!(d && d.disponivel); conversa = (d && d.conversa) || '';
+      try { montar(); } catch (e) {}
+    }).catch(function(){ disp = false; });
+  }
+
+  function abrirLink(url){ window.location.href = url; }
+
+  window.conectarWhats = async function(){
+    if (!(window.avanziWpp && avanziWpp.logado())) { toast('Entre na sua conta para conectar o WhatsApp'); return; }
+    try {
+      var r = await fetch(BACKEND_URL + '/api/whatsapp-token', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: '{}' });
+      var d = await r.json();
+      if (!r.ok || !d.disponivel) { abrirWhatsEmBreve(); return; }
+      confirmar({
+        titulo: 'Conectar o WhatsApp',
+        texto: 'Vai abrir o WhatsApp com a mensagem <strong>"Oi, Avanzi! 👋"</strong> pronta. É só tocar em <strong>enviar</strong>.<br><br>Depois disso, mande seus gastos do jeito que você fala, ou pergunte <strong>"posso comprar um tênis de 300?"</strong> antes de comprar.' +
+          '<br><br><span style="font-size:12px;opacity:.75">Se não conectar, mande este código na conversa: <strong>' + d.codigo + '</strong></span>',
+        ok: 'Abrir o WhatsApp',
+        cancelar: 'Agora não'
+      }, function(){ abrirLink(d.link); });
+    } catch (e) { toast('Não consegui agora. Tenta de novo em instantes'); }
+  };
+
+  window.abrirConversaWhats = function(){
+    confirmar({
+      titulo: 'WhatsApp conectado ✓',
+      texto: 'Mande para o Avanzi:<br><br>• <strong>"gastei 32 no almoço"</strong> (ou um áudio)<br>• <strong>"recebi 1500 de salário"</strong><br>• <strong>"posso comprar um tênis de 300?"</strong> (ou a foto com o preço)<br><br>O que você anotar por lá aparece aqui sozinho.',
+      ok: 'Abrir conversa',
+      cancelar: 'Fechar'
+    }, function(){ if (conversa) abrirLink(conversa); });
+  };
+
   function montar(){
     var sc = document.getElementById('d-scroll'); if (!sc) return;
+    checarDisponivel();
     var el = document.getElementById('d-wpp');
     if (!el) {
       el = document.createElement('button'); el.id = 'd-wpp'; el.type = 'button'; el.className = 'wpp';
-      el.onclick = abrirWhatsEmBreve;
       var hoje = document.getElementById('d-hoje');
       if (hoje && hoje.nextSibling) sc.insertBefore(el, hoje.nextSibling); else sc.insertBefore(el, sc.firstChild);
     }
     el.style.display = (typeof ehMesAtual === 'function' && !ehMesAtual()) ? 'none' : 'flex';
-    el.innerHTML = '<div class="wpp-ic">' + ICONE + '</div><div style="flex:1;min-width:0"><div class="wpp-t">Anote pelo WhatsApp <span class="wpp-tag">EM BREVE</span></div>' +
-      '<div class="wpp-s">' + (S.querWhatsapp ? 'Você vai ser avisado quando chegar ✓' : 'Mande "gastei 25 no ifood" e pronto. Toque para saber mais') + '</div></div>';
+    var tag, sub;
+    if (disp && S.wppLigado) {
+      el.onclick = abrirConversaWhats;
+      tag = 'CONECTADO';
+      sub = 'Mande "gastei 25 no ifood" ou pergunte "posso comprar?"';
+    } else if (disp) {
+      el.onclick = conectarWhats;
+      tag = 'NOVO';
+      sub = 'Anote por mensagem ou áudio. Toque para conectar';
+    } else {
+      el.onclick = abrirWhatsEmBreve;
+      tag = 'EM BREVE';
+      sub = S.querWhatsapp ? 'Você vai ser avisado quando chegar ✓' : 'Mande "gastei 25 no ifood" e pronto. Toque para saber mais';
+    }
+    el.innerHTML = '<div class="wpp-ic">' + ICONE + '</div><div style="flex:1;min-width:0"><div class="wpp-t">Anote pelo WhatsApp <span class="wpp-tag">' + tag + '</span></div>' +
+      '<div class="wpp-s">' + sub + '</div></div>';
   }
   var renderDashAntesW = renderDash;
   renderDash = function(){ renderDashAntesW.apply(this, arguments); try { montar(); } catch (e) {} };
@@ -4504,6 +4603,79 @@ window.addEventListener('load',()=>{
   };
 })();
 
+</script>
+
+<script>
+// ─── O QUE TE INCOMODA (feedback) ───────────────
+(function(){
+  var css = '.fb-ov{position:fixed;inset:0;z-index:420;background:rgba(10,9,8,.55);display:none;align-items:flex-end;justify-content:center;backdrop-filter:blur(2px)}' +
+    '.fb-ov.on{display:flex}' +
+    '.fb{width:100%;max-width:430px;background:var(--white);border-radius:24px 24px 0 0;padding:22px 22px calc(20px + var(--sab));animation:insUp .3s cubic-bezier(.2,.8,.2,1)}' +
+    '.fb-h{width:36px;height:4px;border-radius:99px;background:var(--n200);margin:0 auto 18px}' +
+    '.fb-t{font-size:calc(21px * var(--esc));font-weight:700;color:var(--n900);letter-spacing:-.3px}' +
+    '.fb-s{font-size:calc(14px * var(--esc));color:var(--n400);margin-top:4px;line-height:1.5}' +
+    '.fb-chips{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 14px}' +
+    '.fb-chip{padding:10px 14px;border-radius:99px;background:var(--n50);border:1.5px solid var(--n100);color:var(--n700);font-size:calc(14px * var(--esc));font-weight:600;font-family:var(--f)}' +
+    '.fb-chip.on{background:var(--g100);border-color:var(--g500);color:var(--gtx)}' +
+    '.fb-txt{width:100%;box-sizing:border-box;min-height:120px;resize:vertical;padding:14px;border-radius:14px;border:1.5px solid var(--n100);background:var(--n50);color:var(--n900);font-size:16px;font-family:var(--f);line-height:1.5;outline:none}' +
+    '.fb-txt:focus{border-color:var(--g500)}' +
+    '.fb-cont{font-size:12px;color:var(--n300);text-align:right;margin-top:6px}' +
+    '.fb-b{display:flex;gap:10px;margin-top:14px}' +
+    '.fb-b .btn-solid{flex:1}' +
+    '.fb-no{padding:0 18px;min-height:56px;border-radius:12px;background:var(--n50);color:var(--n700);font-weight:600;font-family:var(--f)}' +
+    '.fb-ok{text-align:center;padding:18px 4px 6px}' +
+    '.fb-ok-ic{width:64px;height:64px;border-radius:50%;background:var(--g100);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-size:30px}';
+  var st = document.createElement('style'); st.textContent = css; document.head.appendChild(st);
+
+  var TIPOS = [['bug', 'Algo não funciona'], ['dificil', 'Difícil de entender'], ['falta', 'Falta algo'], ['outro', 'Outra coisa']];
+  var ov = document.createElement('div'); ov.className = 'fb-ov'; document.body.appendChild(ov);
+  var tipo = null;
+
+  function fechar(){ ov.classList.remove('on'); }
+  ov.addEventListener('click', function(e){ if (e.target === ov) fechar(); });
+
+  function telaAtual(){ var t = document.querySelector('.tela.ativa'); return t ? t.id.replace('tela-', '') : ''; }
+
+  window.abrirFeedback = function(tipoInicial){
+    tipo = tipoInicial || null;
+    ov.innerHTML = '<div class="fb" role="dialog" aria-modal="true" aria-labelledby="fb-t"><div class="fb-h"></div>' +
+      '<div class="fb-t" id="fb-t">O que te incomoda no Avanzi?</div>' +
+      '<div class="fb-s">Pode ser sincero, até nas coisas pequenas. Eu leio tudo e é assim que o app melhora.</div>' +
+      '<div class="fb-chips">' + TIPOS.map(function(t){ return '<button type="button" class="fb-chip' + (tipo === t[0] ? ' on' : '') + '" data-t="' + t[0] + '">' + t[1] + '</button>'; }).join('') + '</div>' +
+      '<label for="fb-txt" class="label" style="display:block;margin-bottom:8px">Conta o que aconteceu</label>' +
+      '<textarea class="fb-txt" id="fb-txt" maxlength="1000" placeholder="Ex: quando anoto um gasto de ontem, ele aparece como se fosse hoje"></textarea>' +
+      '<div class="fb-cont" id="fb-cont">0/1000</div>' +
+      '<div class="fb-b"><button type="button" class="fb-no" id="fb-cancel">Agora não</button><button type="button" class="btn-solid" id="fb-enviar">Enviar</button></div></div>';
+    ov.querySelectorAll('.fb-chip').forEach(function(b){
+      b.onclick = function(){ tipo = b.getAttribute('data-t'); ov.querySelectorAll('.fb-chip').forEach(function(x){ x.classList.toggle('on', x === b); }); };
+    });
+    var txt = ov.querySelector('#fb-txt');
+    txt.oninput = function(){ ov.querySelector('#fb-cont').textContent = txt.value.length + '/1000'; };
+    ov.querySelector('#fb-cancel').onclick = fechar;
+    ov.querySelector('#fb-enviar').onclick = enviar;
+    ov.classList.add('on');
+    setTimeout(function(){ try { txt.focus(); } catch (e) {} }, 300);
+  };
+
+  async function enviar(){
+    var txt = ov.querySelector('#fb-txt'); var texto = (txt.value || '').trim();
+    if (texto.length < 3) { toast('Escreve um pouquinho do que aconteceu'); txt.focus(); return; }
+    var btn = ov.querySelector('#fb-enviar'); btn.disabled = true; btn.textContent = 'Enviando...';
+    var ok = false;
+    try { if (window.avanziEnviarFeedback) ok = await avanziEnviarFeedback(tipo || 'outro', texto, telaAtual()); } catch (e) {}
+    if (!ok) {
+      // sem internet ou sem conta: manda por e-mail mesmo
+      var assunto = encodeURIComponent('O que me incomoda no Avanzi');
+      window.location.href = 'mailto:appavanzi@gmail.com?subject=' + assunto + '&body=' + encodeURIComponent(texto);
+      fechar(); return;
+    }
+    S.feedbackEnviado = (S.feedbackEnviado || 0) + 1; save();
+    ov.querySelector('.fb').innerHTML = '<div class="fb-h"></div><div class="fb-ok"><div class="fb-ok-ic">🙏</div>' +
+      '<div class="fb-t">Valeu de verdade!</div><div class="fb-s" style="margin:6px 0 20px">Recebi aqui. Se for algo que dá pra resolver rápido, você vai ver a mudança no app.</div>' +
+      '<button type="button" class="btn-solid" id="fb-fim">Fechar</button></div>';
+    ov.querySelector('#fb-fim').onclick = fechar;
+  }
+})();
 </script>
 </body>
 </html>
