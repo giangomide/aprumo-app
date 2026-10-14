@@ -1460,8 +1460,8 @@ body { position: fixed; top: 0; bottom: 0; left: 0; right: 0; width: 100%; heigh
           <circle cx="86" cy="69" r="2.6" fill="#D4B77E"/>
         </svg>
       </div>
-      <div class="onb-title">É só falar<br><em>com o Avanzi.</em></div>
-      <div class="onb-text">Escreva "gastei 20 no mercado" ou "quero juntar 500 pra viagem" no chat, e o Avanzi entende e organiza tudo pra você. Recurso do Avanzi Plus.</div>
+      <div class="onb-title">Anote pelo<br><em>WhatsApp.</em></div>
+      <div class="onb-text">Mande "gastei 20 no mercado" (até por áudio) pro Avanzi no WhatsApp e ele anota tudo. E antes de gastar, pergunte: "posso comprar?"</div>
     </div>
 
     <div class="onb-slide" data-i="3">
@@ -1517,9 +1517,6 @@ body { position: fixed; top: 0; bottom: 0; left: 0; right: 0; width: 100%; heigh
         </div>
       </div>
       <div style="display:flex;align-items:center;gap:10px">
-        <button class="chat-fab-btn" onclick="fecharChatCoach();ir('chat')" aria-label="Conversar com IA">
-          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2 9a6.5 6.5 0 1112 4.2L15 15l-2-.8A6.5 6.5 0 012 9z"/><circle cx="6" cy="9" r=".6" fill="currentColor" stroke="none"/><circle cx="9" cy="9" r=".6" fill="currentColor" stroke="none"/><circle cx="12" cy="9" r=".6" fill="currentColor" stroke="none"/></svg>
-        </button>
         <div class="dash-avatar" id="d-avatar" onclick="ir('perfil')" style="cursor:pointer">J</div>
       </div>
     </div>
@@ -1888,6 +1885,7 @@ function toast(msg){
 
 // ─── NAVEGAÇÃO ───────────────────────────────────
 function ir(tela){
+  if(tela==='chat') tela='dash'; // chat saiu: agora é pelo WhatsApp
   if(tela!=='premium' && statusInterval){ clearInterval(statusInterval); statusInterval=null; }
   if(tela!=='premium' && tela!=='perfil' && tela!=='chat') telaAnterior = tela;
   document.querySelectorAll('.tela').forEach(t=>t.classList.remove('ativa'));
@@ -1920,8 +1918,6 @@ const FEATURES = [
     i:'<svg width="17" height="17" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 2L2.5 4.5v4.7c0 3.8 2.8 7 6.5 7.6 3.7-.6 6.5-3.8 6.5-7.6V4.5L9 2z"/><path d="M6.5 9l1.8 1.8L11.5 7.5"/></svg>' },
   { n:'Contas que repetem sozinhas', d:'Aluguel, Netflix, salário — o Avanzi lança todo mês por você.',
     i:'<svg width="17" height="17" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a4 4 0 014-4h6l-2-2m2 2l-2 2"/><path d="M15 11a4 4 0 01-4 4H5l2 2m-2-2l2-2"/></svg>' },
-  { n:'Organizador particular por chat', d:'Fale seus gastos, metas e limites por mensagem — o Avanzi entende e organiza tudo pra você.',
-    i:'<svg width="17" height="17" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 9a6.5 6.5 0 1112 4.2L15 15l-2-.8A6.5 6.5 0 012 9z"/></svg>' },
   { n:'Histórico completo', d:'Compare meses, veja evolução e exporte seus dados.',
     i:'<svg width="17" height="17" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 14V8M6.8 14V4M11.2 14V10M15.5 14V6"/></svg>' },
 ];
@@ -2993,9 +2989,7 @@ const TOUR_STEPS = [
   { tela:'dash', selector:'.balance-block',
     title:'Seu resumo do mês', text:'Aqui você vê quanto sobrou, quanto entrou e quanto saiu. Role a tela pra baixo pra ver o gráfico de categorias também.' },
   { tela:'dash', selector:'.fab',
-    title:'Toque no + para lançar', text:'O botão verde flutuante abre a tela de lançar um gasto ou recebimento — leva uns 10 segundos.' },
-  { tela:'dash', selector:'.chat-fab-btn',
-    title:'Ou só converse (Plus)', text:'Prefere digitar? "gastei 20 no mercado", "quero juntar 500 pra viagem"... o Avanzi entende e organiza tudo. Recurso exclusivo do Avanzi Plus.' },
+    title:'Toque no + para lançar', text:'O botão flutuante abre a tela de lançar um gasto ou recebimento — leva uns 10 segundos.' },
   { tela:'lancar', selector:'.cats-grid',
     title:'Escolha a categoria', text:'Digite o valor lá em cima e escolha em que categoria ele entra. Simples assim.' },
   { tela:'metas', selector:'.btn-add-goal',
